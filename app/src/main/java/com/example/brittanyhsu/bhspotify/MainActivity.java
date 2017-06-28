@@ -30,10 +30,6 @@ public class MainActivity extends Activity implements
         SpotifyPlayer.NotificationCallback, ConnectionStateCallback
 {
 
-    // TODO: Replace with your client ID
-//    private final String CLIENT_ID = "c6274fbfe94746f79ba28beebfee6801";
-//    // TODO: Replace with your redirect URI
-//    private final String REDIRECT_URI = "bhspotify2://callback";
 
     private final String CLIENT_ID = Constants.CLIENT_ID;
     private final String REDIRECT_URI = Constants.REDIRECT_URI;
