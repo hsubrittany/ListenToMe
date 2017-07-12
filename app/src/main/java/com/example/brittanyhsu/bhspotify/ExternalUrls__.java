@@ -3,7 +3,7 @@ package com.example.brittanyhsu.bhspotify;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ExternalUrls {
+public class ExternalUrls__ {
 
     @SerializedName("spotify")
     @Expose

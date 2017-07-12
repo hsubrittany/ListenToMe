@@ -38,6 +38,7 @@ public class GetMyPlaylists extends Activity {
     }
 
     void getPlaylists() {
+        Intent intent = getIntent();
         final String accessToken = getIntent().getStringExtra("access token");
 
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
@@ -58,7 +59,6 @@ public class GetMyPlaylists extends Activity {
 
 
         SpotifyAPI client = retrofit.create(SpotifyAPI.class);
-
         Call<Playlist> call = client.getMyPlaylists();
         call.enqueue(new Callback<Playlist>() {
             @Override

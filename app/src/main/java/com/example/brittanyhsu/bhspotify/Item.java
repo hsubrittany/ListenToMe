@@ -48,6 +48,42 @@ public class Item {
     @SerializedName("uri")
     @Expose
     private String uri;
+///////////
+//    @SerializedName("album")
+//    @Expose
+//    private Album album;
+//    @SerializedName("artists")
+//    @Expose
+//    private List<Artist_> artists = null;
+//    @SerializedName("available_markets")
+//    @Expose
+//    private List<String> availableMarkets = null;
+//    @SerializedName("disc_number")
+//    @Expose
+//    private Integer discNumber;
+//    @SerializedName("duration_ms")
+//    @Expose
+//    private Integer durationMs;
+//    @SerializedName("explicit")
+//    @Expose
+//    private Boolean explicit;
+//    @SerializedName("external_ids")
+//    @Expose
+//    private ExternalIds externalIds;
+//    @SerializedName("external_urls")
+//    @Expose
+//    private ExternalUrls___ externalUrls___;
+//
+//    @SerializedName("popularity")
+//    @Expose
+//    private Integer popularity;
+//    @SerializedName("preview_url")
+//    @Expose
+//    private String previewUrl;
+//    @SerializedName("track_number")
+//    @Expose
+//    private Integer trackNumber;
+
 
     public Boolean getCollaborative() {
         return collaborative;
@@ -144,4 +180,96 @@ public class Item {
     public void setUri(String uri) {
         this.uri = uri;
     }
+
+    ////
+
+//    public Album getAlbum() {
+//        return album;
+//    }
+//
+//    public void setAlbum(Album album) {
+//        this.album = album;
+//    }
+//
+//    public List<Artist_> getArtists() {
+//        return artists;
+//    }
+//
+//    public void setArtists(List<Artist_> artists) {
+//        this.artists = artists;
+//    }
+//
+//    public List<String> getAvailableMarkets() {
+//        return availableMarkets;
+//    }
+//
+//    public void setAvailableMarkets(List<String> availableMarkets) {
+//        this.availableMarkets = availableMarkets;
+//    }
+//
+//    public Integer getDiscNumber() {
+//        return discNumber;
+//    }
+//
+//    public void setDiscNumber(Integer discNumber) {
+//        this.discNumber = discNumber;
+//    }
+//
+//    public Integer getDurationMs() {
+//        return durationMs;
+//    }
+//
+//    public void setDurationMs(Integer durationMs) {
+//        this.durationMs = durationMs;
+//    }
+//
+//    public Boolean getExplicit() {
+//        return explicit;
+//    }
+//
+//    public void setExplicit(Boolean explicit) {
+//        this.explicit = explicit;
+//    }
+//
+//    public ExternalIds getExternalIds() {
+//        return externalIds;
+//    }
+//
+//    public void setExternalIds(ExternalIds externalIds) {
+//        this.externalIds = externalIds;
+//    }
+//
+//    public ExternalUrls___ getExternalUrls___() {
+//        return externalUrls___;
+//    }
+//
+//    public void setExternalUrls___(ExternalUrls___ externalUrls) {
+//        this.externalUrls___ = externalUrls___;
+//    }
+//
+//
+//    public Integer getPopularity() {
+//        return popularity;
+//    }
+//
+//    public void setPopularity(Integer popularity) {
+//        this.popularity = popularity;
+//    }
+//
+//    public String getPreviewUrl() {
+//        return previewUrl;
+//    }
+//
+//    public void setPreviewUrl(String previewUrl) {
+//        this.previewUrl = previewUrl;
+//    }
+//
+//    public Integer getTrackNumber() {
+//        return trackNumber;
+//    }
+//
+//    public void setTrackNumber(Integer trackNumber) {
+//        this.trackNumber = trackNumber;
+//    }
+
 }

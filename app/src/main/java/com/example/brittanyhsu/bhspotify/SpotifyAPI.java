@@ -16,8 +16,8 @@ import retrofit2.http.Query;
 
 public interface SpotifyAPI {
 
-//    @GET("/v1/search?type=track")
-//    Call<Metadata.Track> searchTrack(@Query("q") String q);
+    @GET("/v1/search?type=track&limit=1")
+    Call<Data> searchTrack(@Query("q") String q);
 
     @GET("/v1/me/playlists")
     Call<Playlist> getMyPlaylists();
