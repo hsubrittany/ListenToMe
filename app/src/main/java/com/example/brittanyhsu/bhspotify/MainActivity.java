@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements
     private final String CLIENT_ID = Constants.CLIENT_ID;
     private final String REDIRECT_URI = Constants.REDIRECT_URI;
     private String accessToken;
-    public static final String BASE_URL = "https://api.spotify.com";
+    public final String BASE_URL = Constants.BASE_URL;
     private static final int REQUEST_CODE = 12;
     private Player mPlayer;
 

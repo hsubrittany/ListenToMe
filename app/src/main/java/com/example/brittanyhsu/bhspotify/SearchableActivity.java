@@ -33,7 +33,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SearchableActivity extends AppCompatActivity {
 
-    public static final String BASE_URL = "https://api.spotify.com";
+    public final String BASE_URL = Constants.BASE_URL;
 
     public String accessToken = "";
 
@@ -128,8 +128,8 @@ public class SearchableActivity extends AppCompatActivity {
                         artists.add(item.getArtists().get(i).getName());
                     }
 
-                    Log.d("SearchableActivity", "Displaying search results...  \n"  + "ID: " + item.getId() + '\n' +
-                    "Title: " + item.getName() + '\n' + "Artist(s): " + artists);
+                    Log.d("SearchableActivity", "Displaying search results...  \n" +
+                    "Title: " + item.getName() + '\n' + "Artist(s): " + artists + '\n' + "URI: " + item.getUri());
                 }
             }
 

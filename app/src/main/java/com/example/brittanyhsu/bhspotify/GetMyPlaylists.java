@@ -29,7 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GetMyPlaylists extends Activity {
 
-    public static final String BASE_URL = "https://api.spotify.com";
+    public final String BASE_URL = Constants.BASE_URL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
