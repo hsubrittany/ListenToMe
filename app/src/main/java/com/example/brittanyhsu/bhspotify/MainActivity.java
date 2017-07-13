@@ -20,6 +20,10 @@ import com.spotify.sdk.android.player.PlayerEvent;
 import com.spotify.sdk.android.player.Spotify;
 import com.spotify.sdk.android.player.SpotifyPlayer;
 
+// TODO: Add to playlist functionality.
+// Needed: owner ID, playlist ID, track URI, token. Already added scopes.
+// endpoint: (POST) https://api.spotify.com/v1/users/{user_id}/playlists/{playlist_id}/tracks
+
 
 public class MainActivity extends AppCompatActivity implements
         SpotifyPlayer.NotificationCallback, ConnectionStateCallback
@@ -39,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements
         AuthenticationRequest.Builder builder = new AuthenticationRequest.Builder(CLIENT_ID,
                 AuthenticationResponse.Type.TOKEN,
                 REDIRECT_URI);
-        builder.setScopes(new String[]{"user-read-private", "streaming", "playlist-read-private"});
+        builder.setScopes(new String[]{"user-read-private", "streaming", "playlist-read-private", "playlist-modify-public", "playlist-modify-private"});
         AuthenticationRequest request = builder.build();
 
         AuthenticationClient.openLoginActivity(this, REQUEST_CODE, request);

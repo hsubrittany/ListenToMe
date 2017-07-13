@@ -1,13 +1,13 @@
-package com.example.brittanyhsu.bhspotify;
+package com.example.brittanyhsu.bhspotify.Models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Artist_ {
+public class Artist {
 
     @SerializedName("external_urls")
     @Expose
-    private ExternalUrls__ externalUrls;
+    private ExternalUrls externalUrls;
     @SerializedName("href")
     @Expose
     private String href;
@@ -24,11 +24,11 @@ public class Artist_ {
     @Expose
     private String uri;
 
-    public ExternalUrls__ getExternalUrls() {
+    public ExternalUrls getExternalUrls() {
         return externalUrls;
     }
 
-    public void setExternalUrls(ExternalUrls__ externalUrls) {
+    public void setExternalUrls(ExternalUrls externalUrls) {
         this.externalUrls = externalUrls;
     }
 

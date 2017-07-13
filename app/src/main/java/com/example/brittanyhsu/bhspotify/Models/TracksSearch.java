@@ -1,4 +1,4 @@
-package com.example.brittanyhsu.bhspotify;
+package com.example.brittanyhsu.bhspotify.Models;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

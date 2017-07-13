@@ -1,6 +1,11 @@
-package com.example.brittanyhsu.bhspotify;
+package com.example.brittanyhsu.bhspotify.Models;
 
 import java.util.List;
+
+import com.example.brittanyhsu.bhspotify.Models.Album;
+import com.example.brittanyhsu.bhspotify.Models.Artist_;
+import com.example.brittanyhsu.bhspotify.Models.ExternalIds;
+import com.example.brittanyhsu.bhspotify.Models.ExternalUrls___;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

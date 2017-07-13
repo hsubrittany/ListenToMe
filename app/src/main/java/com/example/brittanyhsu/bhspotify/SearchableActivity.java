@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 
+import com.example.brittanyhsu.bhspotify.Models.Data;
+import com.example.brittanyhsu.bhspotify.Models.ItemSearch;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

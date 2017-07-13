@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.brittanyhsu.bhspotify.Models.Playlist;
 import com.google.gson.GsonBuilder;
 
 import org.json.JSONArray;

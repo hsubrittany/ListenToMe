@@ -1,22 +1,22 @@
-package com.example.brittanyhsu.bhspotify;
+package com.example.brittanyhsu.bhspotify.Models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by brittanyhsu on 7/6/17.
- */
+public class Artist_ {
 
-public class Owner {
     @SerializedName("external_urls")
     @Expose
-    private ExternalUrls_ externalUrls;
+    private ExternalUrls__ externalUrls;
     @SerializedName("href")
     @Expose
     private String href;
     @SerializedName("id")
     @Expose
     private String id;
+    @SerializedName("name")
+    @Expose
+    private String name;
     @SerializedName("type")
     @Expose
     private String type;
@@ -24,11 +24,11 @@ public class Owner {
     @Expose
     private String uri;
 
-    public ExternalUrls_ getExternalUrls() {
+    public ExternalUrls__ getExternalUrls() {
         return externalUrls;
     }
 
-    public void setExternalUrls(ExternalUrls_ externalUrls) {
+    public void setExternalUrls(ExternalUrls__ externalUrls) {
         this.externalUrls = externalUrls;
     }
 
@@ -46,6 +46,14 @@ public class Owner {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getType() {

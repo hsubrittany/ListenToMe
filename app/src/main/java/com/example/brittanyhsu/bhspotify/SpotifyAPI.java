@@ -1,13 +1,10 @@
 package com.example.brittanyhsu.bhspotify;
 
-import com.spotify.sdk.android.player.Metadata;
-
-import java.util.List;
+import com.example.brittanyhsu.bhspotify.Models.Data;
+import com.example.brittanyhsu.bhspotify.Models.Playlist;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.http.GET;
-import retrofit2.http.Headers;
 import retrofit2.http.Query;
 
 /**
