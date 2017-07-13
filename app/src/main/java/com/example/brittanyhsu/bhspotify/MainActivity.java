@@ -20,13 +20,16 @@ import com.spotify.sdk.android.player.PlayerEvent;
 import com.spotify.sdk.android.player.Spotify;
 import com.spotify.sdk.android.player.SpotifyPlayer;
 
+// todo: tap button --> display alertdialog list of playlist options
+// todo: tap on option --> start addtoplaylist activity
+// recall that rn addtoplaylist just passes in demo constants
+
 public class MainActivity extends AppCompatActivity implements
         SpotifyPlayer.NotificationCallback, ConnectionStateCallback
 {
     private final String CLIENT_ID = Constants.CLIENT_ID;
     private final String REDIRECT_URI = Constants.REDIRECT_URI;
     private String accessToken;
-    public final String BASE_URL = Constants.BASE_URL;
     private static final int REQUEST_CODE = 12;
     private Player mPlayer;
 
@@ -114,8 +117,8 @@ public class MainActivity extends AppCompatActivity implements
 //        mPlayer.playUri(null, "spotify:track:4TJNW3JPNoxtsqmZjLKGk0", 0, 0);
 
 //        Intent intent = new Intent(MainActivity.this, GetMyPlaylists.class);
-//        Intent intent = new Intent(MainActivity.this, SearchableActivity.class);
-        Intent intent = new Intent(MainActivity.this, AddToPlaylist.class);
+        Intent intent = new Intent(MainActivity.this, SearchableActivity.class);
+//        Intent intent = new Intent(MainActivity.this, AddToPlaylist.class);
         intent.putExtra("access token", accessToken);
 
         startActivity(intent);

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BHSpotify</string>
+    <string name="button_name">Add track to playlist</string>
 </resources>

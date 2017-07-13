@@ -9,14 +9,16 @@ import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.brittanyhsu.bhspotify.Models.Data;
 import com.example.brittanyhsu.bhspotify.Models.ItemSearch;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -31,18 +33,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by brittanyhsu on 6/27/17.
  */
 
-// TODO: SEARCH WORKS!! find a way to get the title or url only.
-
 public class SearchableActivity extends AppCompatActivity {
 
     public final String BASE_URL = Constants.BASE_URL;
+    private ImageView albumArt;
 
     public String accessToken = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_result);
+        setContentView(R.layout.activity_main);
 
         Intent intent = getIntent();
 
@@ -50,15 +51,7 @@ public class SearchableActivity extends AppCompatActivity {
             accessToken = intent.getStringExtra("access token");
 
         Log.d("SearchableActivity", "AccessToken onCreate: " + accessToken);
-        handleIntent(getIntent());
     }
-
-//    @Override
-//    public void onSaveInstanceState(Bundle outState) {
-//        Log.d("SearchableActivity", "onSaveInstanceState called");
-//        outState.putString("access token", accessToken);
-//        super.onSaveInstanceState(outState);
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -85,6 +78,8 @@ public class SearchableActivity extends AppCompatActivity {
     }
 
     public void doMySearch(String query) {
+        setContentView(R.layout.activity_result);
+        albumArt = (ImageView) findViewById(R.id.albumArt);
         Log.d("SearchableActivity", "AccessToken doMySearch: " + accessToken);
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
             @Override
@@ -121,17 +116,35 @@ public class SearchableActivity extends AppCompatActivity {
                 }
 
                 else {
-//                    String jsonString = new GsonBuilder().setPrettyPrinting().create().toJson(response);
-//                    Log.d("SearchableActivity", "Displaying search results...  "+ jsonString);
                     ItemSearch item = response.body().getTracksSearch().getItems().get(0);
 
-                    ArrayList<String> artists = new ArrayList<>();
+                    String artistString = "";
                     for(int i = 0; i < item.getArtists().size(); i++) {
-                        artists.add(item.getArtists().get(i).getName());
+                        artistString += item.getArtists().get(i).getName();
+                        if(i != item.getArtists().size()-1)
+                            artistString += ", ";
                     }
 
                     Log.d("SearchableActivity", "Displaying search results...  \n" +
-                    "Title: " + item.getName() + '\n' + "Artist(s): " + artists + '\n' + "URI: " + item.getUri());
+                    "Title: " + item.getName() + '\n' + "Artist(s): " + artistString +
+                            '\n' + "Album: " + item.getAlbum().getName() + '\n' + "URI: " + item.getUri());
+
+                    String albumUrl = item.getAlbum().getImages().get(0).getUrl();
+
+                    // Displaying album art with Picasso
+                    // If error occurs, will show android launcher icon
+                    Picasso.with(getApplicationContext())
+                            .load(albumUrl)
+                            .error(R.mipmap.ic_launcher)
+                            .resize(750,750)
+                            .into(albumArt);
+
+                    TextView title = (TextView) findViewById(R.id.trackTitle);
+                    TextView artist = (TextView) findViewById(R.id.artistName);
+
+                    // Displaying title and artist of track
+                    title.setText(item.getName());
+                    artist.setText(artistString);
                 }
             }
 

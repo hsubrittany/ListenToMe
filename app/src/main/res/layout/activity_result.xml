@@ -1,14 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
     tools:context=".MainActivity"
-    android:background="#ffffff">
+    android:background="@color/winBackground">
+
+    <ImageView
+        android:id="@+id/albumArt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"/>
 
     <TextView
+        android:id="@+id/trackTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="search result"/>
+        android:text=""
+        android:layout_below="@+id/albumArt"
+        android:paddingTop="10dp"
+        android:textSize="22sp"
+        android:layout_centerHorizontal="true"/>
 
+    <TextView
+        android:id="@+id/artistName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="18sp"
+        android:paddingBottom="50dp"
+        android:layout_below="@+id/trackTitle"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/artistName"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/background"
+        android:text="@string/button_name"
+        android:textSize="18sp"/>
 
 </RelativeLayout>
