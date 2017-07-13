@@ -20,11 +20,6 @@ import com.spotify.sdk.android.player.PlayerEvent;
 import com.spotify.sdk.android.player.Spotify;
 import com.spotify.sdk.android.player.SpotifyPlayer;
 
-// TODO: Add to playlist functionality.
-// Needed: owner ID, playlist ID, track URI, token. Already added scopes.
-// endpoint: (POST) https://api.spotify.com/v1/users/{user_id}/playlists/{playlist_id}/tracks
-
-
 public class MainActivity extends AppCompatActivity implements
         SpotifyPlayer.NotificationCallback, ConnectionStateCallback
 {
@@ -119,7 +114,8 @@ public class MainActivity extends AppCompatActivity implements
 //        mPlayer.playUri(null, "spotify:track:4TJNW3JPNoxtsqmZjLKGk0", 0, 0);
 
 //        Intent intent = new Intent(MainActivity.this, GetMyPlaylists.class);
-        Intent intent = new Intent(MainActivity.this, SearchableActivity.class);
+//        Intent intent = new Intent(MainActivity.this, SearchableActivity.class);
+        Intent intent = new Intent(MainActivity.this, AddToPlaylist.class);
         intent.putExtra("access token", accessToken);
 
         startActivity(intent);

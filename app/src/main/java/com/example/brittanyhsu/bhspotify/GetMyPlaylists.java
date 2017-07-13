@@ -1,7 +1,6 @@
 package com.example.brittanyhsu.bhspotify;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -39,7 +38,7 @@ public class GetMyPlaylists extends Activity {
     }
 
     void getPlaylists() {
-        Intent intent = getIntent();
+//        Intent intent = getIntent();
         final String accessToken = getIntent().getStringExtra("access token");
 
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
