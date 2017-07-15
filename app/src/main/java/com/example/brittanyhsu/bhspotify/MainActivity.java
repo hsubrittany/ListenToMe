@@ -20,7 +20,8 @@ import com.spotify.sdk.android.player.PlayerEvent;
 import com.spotify.sdk.android.player.Spotify;
 import com.spotify.sdk.android.player.SpotifyPlayer;
 
-// todo: tap button --> display alertdialog list of playlist options
+// todo: alertdialog title is white so u cant see so fix that later
+
 // todo: tap on option --> start addtoplaylist activity
 // recall that rn addtoplaylist just passes in demo constants
 

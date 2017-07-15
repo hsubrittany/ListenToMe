@@ -2,21 +2,30 @@ package com.example.brittanyhsu.bhspotify;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.brittanyhsu.bhspotify.Models.Data;
 import com.example.brittanyhsu.bhspotify.Models.ItemSearch;
+import com.example.brittanyhsu.bhspotify.Models.Playlist;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -37,7 +46,6 @@ public class SearchableActivity extends AppCompatActivity {
 
     public final String BASE_URL = Constants.BASE_URL;
     private ImageView albumArt;
-
     public String accessToken = "";
 
     @Override
@@ -101,7 +109,7 @@ public class SearchableActivity extends AppCompatActivity {
 
         Retrofit retrofit = builder.client(httpClient.build()).build();
 
-        SpotifyAPI client = retrofit.create(SpotifyAPI.class);
+        final SpotifyAPI client = retrofit.create(SpotifyAPI.class);
 
         Call<Data> search = client.searchTrack(query);
         search.enqueue(new Callback<Data>() {
@@ -145,6 +153,14 @@ public class SearchableActivity extends AppCompatActivity {
                     // Displaying title and artist of track
                     title.setText(item.getName());
                     artist.setText(artistString);
+
+                    Button button = (Button) findViewById(R.id.button_add_track);
+                    button.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            getPlaylists(client);
+                        }
+                    });
+
                 }
             }
 
@@ -156,4 +172,62 @@ public class SearchableActivity extends AppCompatActivity {
     }
 
 
+
+    void getPlaylists(SpotifyAPI client) {
+        Call<Playlist> call = client.getMyPlaylists();
+        call.enqueue(new Callback<Playlist>() {
+            @Override
+            public void onResponse(Call<Playlist> call, Response<Playlist> response) {
+                Log.d("SearchableActivity", "onResponse");
+
+                if(!response.isSuccessful()) {
+                    try {
+                        Log.d("SearchableActivity", "Error " + response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                else {
+                    String jsonString = new GsonBuilder().setPrettyPrinting().create().toJson(response);
+                    try {
+                        JSONObject jsonObject = new JSONObject(jsonString);
+                        JSONObject myResponse = jsonObject.getJSONObject("body");
+                        JSONArray itemResponse = (JSONArray) myResponse.get("items");
+
+                        String[] playlists = new String[itemResponse.length()];
+                        for(int i = 0; i < itemResponse.length(); i++) {
+                            playlists[i] = itemResponse.getJSONObject(i).getString("name");
+                        }
+
+                        openDialog(playlists);
+
+//                        String ownerID = response.body().getItems().get(0).getOwner().getId();
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Playlist> call, Throwable t) {
+                Log.d("SearchableActivity", "Failed to get playlists :-(");
+            }
+        });
+    }
+
+    private void openDialog(String[] play) {
+        AlertDialog.Builder myDialog = new AlertDialog.Builder(this);
+        myDialog.setTitle("Add to playlist")
+                .setItems(play,new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int chosen) { // int chosen : position of chosen playlist
+                        Log.d("SearchableActivity", "Me do a thing");
+
+                    }
+                });
+        myDialog.create().show();
+    }
 }
