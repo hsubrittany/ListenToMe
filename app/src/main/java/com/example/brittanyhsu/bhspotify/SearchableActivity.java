@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -220,7 +221,7 @@ public class SearchableActivity extends AppCompatActivity {
 
     private void openDialog(String[] play) {
         AlertDialog.Builder myDialog = new AlertDialog.Builder(this);
-        myDialog.setTitle("Add to playlist")
+        myDialog.setTitle(Html.fromHtml("<font color='#000000'>Add to playlist</font>"))
                 .setItems(play,new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int chosen) { // int chosen : position of chosen playlist
