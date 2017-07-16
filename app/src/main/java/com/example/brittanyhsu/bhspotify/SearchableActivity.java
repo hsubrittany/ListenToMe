@@ -29,6 +29,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -189,26 +190,25 @@ public class SearchableActivity extends AppCompatActivity {
                     }
                 }
                 else {
-                    String jsonString = new GsonBuilder().setPrettyPrinting().create().toJson(response);
-                    try {
-                        JSONObject jsonObject = new JSONObject(jsonString);
-                        JSONObject myResponse = jsonObject.getJSONObject("body");
-                        JSONArray itemResponse = (JSONArray) myResponse.get("items");
+                    String owner_id;
+                    ArrayList<String> myOwnPlaylists = new ArrayList<>();
 
-                        String[] playlists = new String[itemResponse.length()];
-                        for(int i = 0; i < itemResponse.length(); i++) {
-                            playlists[i] = itemResponse.getJSONObject(i).getString("name");
+                    for(int i = 0; i < response.body().getItems().size(); i++) {
+                        owner_id = response.body().getItems().get(i).getOwner().getId();
+
+                        if(owner_id.equals(Constants.OWNER_ID)) {
+                            myOwnPlaylists.add(response.body().getItems().get(i).getName());
                         }
-
-                        openDialog(playlists);
-
-//                        String ownerID = response.body().getItems().get(0).getOwner().getId();
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
                     }
 
+                    String[] playlists = new String[myOwnPlaylists.size()];
+                    for(int i = 0; i < myOwnPlaylists.size(); i++) {
+                        playlists[i] = myOwnPlaylists.get(i);
+                    }
 
+                    Log.d("SearchableActivity", "my playlists... " + myOwnPlaylists);
+
+                    openDialog(playlists);
                 }
             }
 
