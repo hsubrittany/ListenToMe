@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -159,7 +160,7 @@ public class SearchableActivity extends AppCompatActivity {
                     Button button = (Button) findViewById(R.id.button_add_track);
                     button.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
-                            getPlaylists(client, item.getUri());
+                            getPlaylists(client, item.getUri(), item.getName());
                         }
                     });
 
@@ -173,9 +174,7 @@ public class SearchableActivity extends AppCompatActivity {
         });
     }
 
-
-
-    void getPlaylists(final SpotifyAPI client, final String uri) {
+    void getPlaylists(final SpotifyAPI client, final String uri, final String trackTitle) {
         Call<Playlist> call = client.getMyPlaylists();
         call.enqueue(new Callback<Playlist>() {
             @Override
@@ -210,7 +209,7 @@ public class SearchableActivity extends AppCompatActivity {
 
                     Log.d("SearchableActivity", "my playlists... " + myOwnPlaylists);
 
-                    openDialog(playlists,client,owner_id,playlist_ids, uri);
+                    openDialog(playlists,client,owner_id,playlist_ids, uri, trackTitle);
                 }
             }
 
@@ -221,14 +220,15 @@ public class SearchableActivity extends AppCompatActivity {
         });
     }
 
-    private void openDialog(final String[] play, final SpotifyAPI client, final String owner_id, final String[] playlist_ids, final String uri) {
+    private void openDialog(final String[] play, final SpotifyAPI client, final String owner_id,
+                            final String[] playlist_ids, final String uri, final String trackName) {
         final AlertDialog.Builder myDialog = new AlertDialog.Builder(this);
         myDialog.setTitle(Html.fromHtml("<font color='#000000'>Add to playlist</font>"))
                 .setItems(play,new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int chosen) {
                         // int chosen : position of chosen playlist
-                        String playlistChosen;
+                        String playlistChosen = "";
                         String playlistID = "";
                         for(int i = 0; i < play.length; i++) {
                             if(i == chosen) {
@@ -240,11 +240,23 @@ public class SearchableActivity extends AppCompatActivity {
                             }
                         }
 
-                        AddToPlaylist addMe = new AddToPlaylist();
-                        addMe.add(client, owner_id, playlistID, uri);
+                        AddToPlaylist ap = new AddToPlaylist();
+                        String addTrack = ap.add(client, owner_id, playlistID, uri);
+
+                        if(addTrack.equals("success")) {
+                            Log.d("SearchableActivity", "added track successfully");
+                            openSuccessDialog(playlistChosen, trackName);
+                        }
 
                     }
                 });
         myDialog.create().show();
+    }
+
+    private void openSuccessDialog(String playlistName, String trackName) {
+        AlertDialog.Builder successDialog = new AlertDialog.Builder(this);
+        successDialog.setTitle(Html.fromHtml("<font color='#000000'>Success</font>"))
+                .setMessage(trackName + " added to " + playlistName)
+                .create().show();
     }
 }

@@ -1,7 +1,11 @@
 package com.example.brittanyhsu.bhspotify;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.text.Html;
 import android.util.Log;
 
 import com.example.brittanyhsu.bhspotify.Models.SnapshotId;
@@ -23,7 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AddToPlaylist {
 
-    void add(SpotifyAPI client, String user_id, String playlist_id, String uri) {
+    String add(SpotifyAPI client, String user_id, String playlist_id, String uri) {
         Call<SnapshotId> addTrack = client.addToPlaylist(user_id, playlist_id, uri);
 
         addTrack.enqueue(new Callback<SnapshotId>() {
@@ -32,6 +36,7 @@ public class AddToPlaylist {
                 if(!response.isSuccessful()) {
                     try {
                         Log.d("AddToPlaylist", "Error: " + response.errorBody().string());
+                        return;
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -46,8 +51,11 @@ public class AddToPlaylist {
             @Override
             public void onFailure(Call<SnapshotId> call, Throwable t) {
                 Log.d("AddToPlaylist", "Add to playlist failed");
+                return;
             }
         });
+        return "success";
 
     }
+
 }
