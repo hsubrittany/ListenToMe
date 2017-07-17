@@ -126,7 +126,7 @@ public class SearchableActivity extends AppCompatActivity {
                 }
 
                 else {
-                    ItemSearch item = response.body().getTracksSearch().getItems().get(0);
+                    final ItemSearch item = response.body().getTracksSearch().getItems().get(0);
 
                     String artistString = "";
                     for(int i = 0; i < item.getArtists().size(); i++) {
@@ -159,7 +159,7 @@ public class SearchableActivity extends AppCompatActivity {
                     Button button = (Button) findViewById(R.id.button_add_track);
                     button.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
-                            getPlaylists(client);
+                            getPlaylists(client, item.getUri());
                         }
                     });
 
@@ -175,7 +175,7 @@ public class SearchableActivity extends AppCompatActivity {
 
 
 
-    void getPlaylists(SpotifyAPI client) {
+    void getPlaylists(final SpotifyAPI client, final String uri) {
         Call<Playlist> call = client.getMyPlaylists();
         call.enqueue(new Callback<Playlist>() {
             @Override
@@ -190,7 +190,7 @@ public class SearchableActivity extends AppCompatActivity {
                     }
                 }
                 else {
-                    String owner_id;
+                    String owner_id = "";
                     ArrayList<String> myOwnPlaylists = new ArrayList<>();
 
                     for(int i = 0; i < response.body().getItems().size(); i++) {
@@ -202,13 +202,15 @@ public class SearchableActivity extends AppCompatActivity {
                     }
 
                     String[] playlists = new String[myOwnPlaylists.size()];
+                    String[] playlist_ids = new String[myOwnPlaylists.size()];
                     for(int i = 0; i < myOwnPlaylists.size(); i++) {
                         playlists[i] = myOwnPlaylists.get(i);
+                        playlist_ids[i] = response.body().getItems().get(i).getId();
                     }
 
                     Log.d("SearchableActivity", "my playlists... " + myOwnPlaylists);
 
-                    openDialog(playlists);
+                    openDialog(playlists,client,owner_id,playlist_ids, uri);
                 }
             }
 
@@ -219,13 +221,27 @@ public class SearchableActivity extends AppCompatActivity {
         });
     }
 
-    private void openDialog(String[] play) {
-        AlertDialog.Builder myDialog = new AlertDialog.Builder(this);
+    private void openDialog(final String[] play, final SpotifyAPI client, final String owner_id, final String[] playlist_ids, final String uri) {
+        final AlertDialog.Builder myDialog = new AlertDialog.Builder(this);
         myDialog.setTitle(Html.fromHtml("<font color='#000000'>Add to playlist</font>"))
                 .setItems(play,new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int chosen) { // int chosen : position of chosen playlist
-                        Log.d("SearchableActivity", "Me do a thing");
+                    public void onClick(DialogInterface dialog, int chosen) {
+                        // int chosen : position of chosen playlist
+                        String playlistChosen;
+                        String playlistID = "";
+                        for(int i = 0; i < play.length; i++) {
+                            if(i == chosen) {
+                                playlistChosen = play[i];
+                                playlistID = playlist_ids[i];
+                                Log.d("SearchableActivity", "playlistChosen: " + playlistChosen);
+                                Log.d("SearchableActivity", "playlistID: " + playlistID);
+                                break;
+                            }
+                        }
+
+                        AddToPlaylist addMe = new AddToPlaylist();
+                        addMe.add(client, owner_id, playlistID, uri);
 
                     }
                 });
