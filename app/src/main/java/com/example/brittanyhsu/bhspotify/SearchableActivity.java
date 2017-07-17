@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -254,9 +255,30 @@ public class SearchableActivity extends AppCompatActivity {
     }
 
     private void openSuccessDialog(String playlistName, String trackName) {
-        AlertDialog.Builder successDialog = new AlertDialog.Builder(this);
+        final AlertDialog.Builder successDialog = new AlertDialog.Builder(this);
         successDialog.setTitle(Html.fromHtml("<font color='#000000'>Success</font>"))
-                .setMessage(trackName + " added to " + playlistName)
-                .create().show();
+                .setMessage(trackName + " added to " + playlistName);
+
+        final AlertDialog alert = successDialog.create();
+        alert.show();
+
+        final Handler handler = new Handler();
+        final Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                if(alert.isShowing())
+                    alert.dismiss();
+            }
+        };
+
+        alert.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                handler.removeCallbacks(runnable);
+            }
+        });
+
+        handler.postDelayed(runnable, 10000);
+        // Dialog disappears after 10 seconds
     }
 }
