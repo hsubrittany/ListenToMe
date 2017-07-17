@@ -4,7 +4,6 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
@@ -45,6 +44,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Created by brittanyhsu on 6/27/17.
  */
+
+// TODO: When title is too long, it isn't centered
 
 public class SearchableActivity extends AppCompatActivity {
 
@@ -128,6 +129,11 @@ public class SearchableActivity extends AppCompatActivity {
                 }
 
                 else {
+                    if(response.body().getTracksSearch().getItems().isEmpty()) {
+                        openSearchErrorDialog();
+                        return;
+                    }
+
                     final ItemSearch item = response.body().getTracksSearch().getItems().get(0);
 
                     String artistString = "";
@@ -210,7 +216,7 @@ public class SearchableActivity extends AppCompatActivity {
 
                     Log.d("SearchableActivity", "my playlists... " + myOwnPlaylists);
 
-                    openDialog(playlists,client,owner_id,playlist_ids, uri, trackTitle);
+                    openListDialog(playlists,client,owner_id,playlist_ids, uri, trackTitle);
                 }
             }
 
@@ -221,7 +227,7 @@ public class SearchableActivity extends AppCompatActivity {
         });
     }
 
-    private void openDialog(final String[] play, final SpotifyAPI client, final String owner_id,
+    private void openListDialog(final String[] play, final SpotifyAPI client, final String owner_id,
                             final String[] playlist_ids, final String uri, final String trackName) {
         final AlertDialog.Builder myDialog = new AlertDialog.Builder(this);
         myDialog.setTitle(Html.fromHtml("<font color='#000000'>Add to playlist</font>"))
@@ -262,6 +268,7 @@ public class SearchableActivity extends AppCompatActivity {
         final AlertDialog alert = successDialog.create();
         alert.show();
 
+        // Dialog disappears after 10 seconds
         final Handler handler = new Handler();
         final Runnable runnable = new Runnable() {
             @Override
@@ -279,6 +286,12 @@ public class SearchableActivity extends AppCompatActivity {
         });
 
         handler.postDelayed(runnable, 10000);
-        // Dialog disappears after 10 seconds
+    }
+
+    private void openSearchErrorDialog() {
+        AlertDialog.Builder errorDialog = new AlertDialog.Builder(this);
+        errorDialog.setTitle(Html.fromHtml("<font color='#000000'>Error</font>"))
+                .setMessage("No tracks found. Try again.")
+                .create().show();
     }
 }
