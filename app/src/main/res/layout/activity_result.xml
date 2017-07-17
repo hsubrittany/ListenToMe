@@ -21,6 +21,9 @@
         android:text=""
         android:layout_below="@+id/albumArt"
         android:paddingTop="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:gravity="center_horizontal"
         android:textSize="22sp"
         android:layout_centerHorizontal="true"/>
 
@@ -31,16 +34,21 @@
         android:text=""
         android:textSize="18sp"
         android:paddingBottom="50dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:layout_below="@+id/trackTitle"
+        android:gravity="center_horizontal"
         android:layout_centerHorizontal="true"/>
 
     <Button
         android:id="@+id/button_add_track"
+        android:src="@mipmap/play_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/artistName"
         android:layout_centerHorizontal="true"
         android:backgroundTint="@color/background"
+        android:gravity="center_horizontal"
         android:text="@string/button_name"
         android:textSize="18sp"/>
 

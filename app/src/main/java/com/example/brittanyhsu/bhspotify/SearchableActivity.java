@@ -45,7 +45,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by brittanyhsu on 6/27/17.
  */
 
-// TODO: When title is too long, it isn't centered
 
 public class SearchableActivity extends AppCompatActivity {
 
