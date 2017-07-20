@@ -44,12 +44,14 @@
 
         <activity android:name=".GetMyPlaylists"
             android:label="@string/app_name">
-
         </activity>
 
         <activity android:name=".AddToPlaylist"
             android:label="@string/app_name">
+        </activity>
 
+        <activity android:name=".FingerprintActivity"
+            android:label="@string/app_name">
         </activity>
 
 

@@ -54,8 +54,9 @@ dependencies {
 
     compile "com.squareup.picasso:picasso:2.4.0"
 
-    compile files('libs/gnsdk.jar')
-    compile files('libs/gnsdk_helpers.jar')
+    compile files('libs/GN_Music_SDK.jar')
+//    compile files('libs/gnsdk.jar')
+//    compile files('libs/gnsdk_helpers.jar')
 
     testCompile 'junit:junit:4.12'
 }

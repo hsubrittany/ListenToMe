@@ -20,7 +20,6 @@ import com.spotify.sdk.android.player.PlayerEvent;
 import com.spotify.sdk.android.player.Spotify;
 import com.spotify.sdk.android.player.SpotifyPlayer;
 
-
 public class MainActivity extends AppCompatActivity implements
         SpotifyPlayer.NotificationCallback, ConnectionStateCallback
 {
@@ -38,7 +37,8 @@ public class MainActivity extends AppCompatActivity implements
         AuthenticationRequest.Builder builder = new AuthenticationRequest.Builder(CLIENT_ID,
                 AuthenticationResponse.Type.TOKEN,
                 REDIRECT_URI);
-        builder.setScopes(new String[]{"user-read-private", "streaming", "playlist-read-private", "playlist-modify-public", "playlist-modify-private"});
+        builder.setScopes(new String[]{"user-read-private", "streaming", "playlist-read-private",
+                "playlist-modify-public", "playlist-modify-private"});
         AuthenticationRequest request = builder.build();
 
         AuthenticationClient.openLoginActivity(this, REQUEST_CODE, request);
@@ -114,9 +114,10 @@ public class MainActivity extends AppCompatActivity implements
 //        mPlayer.playUri(null, "spotify:track:4TJNW3JPNoxtsqmZjLKGk0", 0, 0);
 
 //        Intent intent = new Intent(MainActivity.this, GetMyPlaylists.class);
-        Intent intent = new Intent(MainActivity.this, SearchableActivity.class);
+//        Intent intent = new Intent(MainActivity.this, SearchableActivity.class);
 //        Intent intent = new Intent(MainActivity.this, AddToPlaylist.class);
-        intent.putExtra("access token", accessToken);
+        Intent intent = new Intent(MainActivity.this, FingerprintActivity.class);
+//        intent.putExtra("access token", accessToken);
 
         startActivity(intent);
     }
