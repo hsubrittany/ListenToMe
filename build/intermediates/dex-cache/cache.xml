@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/brittanyhsu/Documents/BHSpotifyxShazam/app/libs/gnsdk_helpers.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="1264d85853806d69727cf0a72965141e3255be6d">
+        <dex dex="/Users/brittanyhsu/Documents/BHSpotifyxShazam/app/build/intermediates/pre-dexed/debug/gnsdk_helpers_ef5cebda7207101f2eb5afb7bb978e16afd68e65.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/brittanyhsu/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.13.0/a9283170b7305c8d92d25aff02a6ab7e45d06cbe/okio-1.13.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="/Users/brittanyhsu/Documents/BHSpotifyxShazam/app/build/intermediates/pre-dexed/debug/okio-1.13.0_e4d237d073a80a38a4c2f9397e25280b4b4a9846.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/brittanyhsu/Library/Android/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="/Users/brittanyhsu/Documents/BHSpotifyxShazam/app/build/intermediates/pre-dexed/debug/constraint-layout-solver-1.0.2_f9ba55eefd7fd814745ef0bf55ad3c817b942058.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/brittanyhsu/.android/build-cache/0bfcd939f2e2780addccca94cc8b21ae8d1dcad5/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="55220cc71bd23fff8fc339a67f55be3cfd11cdec">
+        <dex dex="/Users/brittanyhsu/Documents/BHSpotifyxShazam/app/build/intermediates/pre-dexed/debug/classes_e708698ff852ba5371edcbc4873fc453e71bdff4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/brittanyhsu/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.3.0/bcacde6a8ccedcc56c127403d26b76072fe6214d/retrofit-2.3.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="bcacde6a8ccedcc56c127403d26b76072fe6214d">
+        <dex dex="/Users/brittanyhsu/Documents/BHSpotifyxShazam/app/build/intermediates/pre-dexed/debug/retrofit-2.3.0_63b5ac177592ea747e3a0ad5909c42bcf03af31c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/brittanyhsu/.android/build-cache/3939d9f36d13a03f4d72bc1ef1344924ea86a8fd/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="0e7c2daeb5c4e8a4b0874bd62367979bb1c0c82a">
+        <dex dex="/Users/brittanyhsu/Documents/BHSpotifyxShazam/app/build/intermediates/pre-dexed/debug/classes_b77629454c65f623a00e831ca98f4b22a1dc27ad.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/brittanyhsu/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.3.0/9e09011e9767bb76b5e27c9b8223476b93b14631/converter-gson-2.3.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9e09011e9767bb76b5e27c9b8223476b93b14631">
+        <dex dex="/Users/brittanyhsu/Documents/BHSpotifyxShazam/app/build/intermediates/pre-dexed/debug/converter-gson-2.3.0_8ce877c2c1173ba5cb31e7cc04b400709bb4e1c7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/brittanyhsu/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.4.0/f36d2d4e3a36b3259aaf9d004d29b4cdc6c1bfb2/picasso-2.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="f36d2d4e3a36b3259aaf9d004d29b4cdc6c1bfb2">
+        <dex dex="/Users/brittanyhsu/Documents/BHSpotifyxShazam/app/build/intermediates/pre-dexed/debug/picasso-2.4.0_3d5a43780a4fb61325f84d5c4866780433a07dc3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/brittanyhsu/.android/build-cache/018c073074698bb5384b822fcf471bdaebbae5d2/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="/Users/brittanyhsu/Documents/BHSpotifyxShazam/app/build/intermediates/pre-dexed/debug/classes_4ae12aa699329f0af6c6bf89cda75ce013e2d06a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/brittanyhsu/.android/build-cache/0bfcd939f2e2780addccca94cc8b21ae8d1dcad5/output/jars/libs/jnihelpers-1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b54aab38b4f87a6682331b511fec0db6b952bb7e">
+        <dex dex="/Users/brittanyhsu/Documents/BHSpotifyxShazam/app/build/intermediates/pre-dexed/debug/jnihelpers-1.0_f0c23cfcfa50dba53c670c8055f46176f30d6e23.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/brittanyhsu/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.7/751f548c85fa49f330cecbb1875893f971b33c4e/gson-2.7.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
+        <dex dex="/Users/brittanyhsu/Documents/BHSpotifyxShazam/app/build/intermediates/pre-dexed/debug/gson-2.7_4fcf7882b0dd5a607d28115fab84152ee86e6981.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/brittanyhsu/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.8.0/5a11f020cce2d11eb71ba916700600e18c4547e7/okhttp-3.8.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="5a11f020cce2d11eb71ba916700600e18c4547e7">
+        <dex dex="/Users/brittanyhsu/Documents/BHSpotifyxShazam/app/build/intermediates/pre-dexed/debug/okhttp-3.8.0_51373f20cc9439b5b9f8653fa10102078f71d25d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/brittanyhsu/Documents/BHSpotifyxShazam/app/libs/gnsdk.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="32f7ebc234af19a9e5f278e85455327e06b5e610">
+        <dex dex="/Users/brittanyhsu/Documents/BHSpotifyxShazam/app/build/intermediates/pre-dexed/debug/gnsdk_d6e159993587e45727d6cb3a18b3636249c04d5d.jar" />
+    </item>
+
+</items>

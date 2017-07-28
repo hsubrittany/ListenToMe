@@ -1,14 +1,34 @@
 package com.example.brittanyhsu.bhspotify;
 
+<<<<<<< HEAD
+=======
+import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.text.Html;
+>>>>>>> 3bd07be0f7c8b51c2579b84aaf66689b093149df
 import android.util.Log;
 
 import com.example.brittanyhsu.bhspotify.Models.SnapshotId;
 
 import java.io.IOException;
 
+<<<<<<< HEAD
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+=======
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+>>>>>>> 3bd07be0f7c8b51c2579b84aaf66689b093149df
 
 /**
  * Created by brittanyhsu on 7/12/17.

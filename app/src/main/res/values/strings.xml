@@ -1,4 +1,8 @@
 <resources>
+<<<<<<< HEAD
     <string name="app_name">SpotifyxShazam</string>
+=======
+    <string name="app_name">BHSpotify</string>
+>>>>>>> 3bd07be0f7c8b51c2579b84aaf66689b093149df
     <string name="button_name">Add track to playlist</string>
 </resources>

@@ -1,10 +1,18 @@
 package com.example.brittanyhsu.bhspotify.Models;
 
+<<<<<<< HEAD
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+=======
+import java.util.List;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+>>>>>>> 3bd07be0f7c8b51c2579b84aaf66689b093149df
 public class Album {
 
     @SerializedName("album_type")

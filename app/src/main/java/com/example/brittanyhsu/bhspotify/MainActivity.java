@@ -32,7 +32,11 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_fingerprint);
+=======
+        setContentView(R.layout.activity_main);
+>>>>>>> 3bd07be0f7c8b51c2579b84aaf66689b093149df
 
         AuthenticationRequest.Builder builder = new AuthenticationRequest.Builder(CLIENT_ID,
                 AuthenticationResponse.Type.TOKEN,
@@ -127,8 +131,11 @@ public class MainActivity extends AppCompatActivity implements
         Log.d("MainActivity", "User logged out");
     }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 3bd07be0f7c8b51c2579b84aaf66689b093149df
     @Override
     public void onLoginFailed(Error error) {
         Log.d("MainActivity", "Login failed");
