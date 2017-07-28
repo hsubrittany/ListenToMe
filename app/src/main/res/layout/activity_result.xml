@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    tools:context=".MainActivity"
+    android:background="@color/winBackground">
+
+    <ImageView
+        android:id="@+id/albumArt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/trackTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_below="@+id/albumArt"
+        android:paddingTop="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:gravity="center_horizontal"
+        android:textSize="22sp"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/artistName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="18sp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+
+        android:layout_below="@+id/trackTitle"
+        android:gravity="center_horizontal"
+        android:layout_centerHorizontal="true"/>
+
+    <!--<ImageButton-->
+        <!--android:id="@+id/button_play"-->
+        <!--android:layout_width="70dp"-->
+        <!--android:layout_height="70dp"-->
+        <!--android:layout_below="@+id/artistName"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_margin="25dp"-->
+        <!--android:background="@drawable/play_button"-->
+        <!--android:gravity="center_horizontal" />-->
+
+    <Button
+        android:id="@+id/button_add_track"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/artistName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/background"
+        android:gravity="center_horizontal"
+        android:text="@string/button_name"
+        android:textSize="18sp"/>
+
+</RelativeLayout>
