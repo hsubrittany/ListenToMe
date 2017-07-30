@@ -10,6 +10,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.text.Html;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,6 +28,8 @@ import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -101,6 +104,25 @@ public class SearchableActivity extends AppCompatActivity {
     }
 
     public void doMySearch(String query) {
+        String withoutFeat = query;
+        String[] splitQuery = query.split(" ");
+        int deleteMePos = -1;
+        for(int i = 0; i < splitQuery.length; i++) {
+            if(splitQuery[i].equalsIgnoreCase("feat.")) {
+                deleteMePos = i;
+                break;
+            }
+        }
+
+        if(deleteMePos != -1) {
+            List<String> queryList = new ArrayList<>(Arrays.asList(splitQuery));
+            queryList.remove(deleteMePos);
+            withoutFeat = TextUtils.join(" ", queryList);
+        }
+
+        Log.d("SearchableActivity", withoutFeat);
+
+
         setContentView(R.layout.activity_result);
         albumArt = (ImageView) findViewById(R.id.albumArt);
         Log.d("SearchableActivity", "AccessToken doMySearch: " + accessToken);
@@ -126,7 +148,7 @@ public class SearchableActivity extends AppCompatActivity {
 
         final SpotifyAPI client = retrofit.create(SpotifyAPI.class);
 
-        Call<Data> search = client.searchTrack(query);
+        Call<Data> search = client.searchTrack(withoutFeat);
         search.enqueue(new Callback<Data>() {
             @Override
             public void onResponse(Call<Data> call, Response<Data> response) {
