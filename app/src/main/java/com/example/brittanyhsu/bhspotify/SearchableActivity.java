@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
@@ -181,12 +182,14 @@ public class SearchableActivity extends AppCompatActivity {
 
                     String albumUrl = item.getAlbum().getImages().get(0).getUrl();
 
+                    int imageWidth = getScreenWidth() - 100;
+
                     // Displaying album art with Picasso
                     // If error occurs, will show android launcher icon
                     Picasso.with(getApplicationContext())
                             .load(albumUrl)
                             .error(R.mipmap.ic_launcher)
-                            .resize(750,750)
+                            .resize(imageWidth,imageWidth)
                             .into(albumArt);
 
                     TextView title = (TextView) findViewById(R.id.trackTitle);
@@ -325,5 +328,9 @@ public class SearchableActivity extends AppCompatActivity {
         errorDialog.setTitle(Html.fromHtml("<font color='#000000'>Error</font>"))
                 .setMessage("No tracks found. Try again.")
                 .create().show();
+    }
+
+    public static int getScreenWidth() {
+        return Resources.getSystem().getDisplayMetrics().widthPixels;
     }
 }
