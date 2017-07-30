@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:gravity="center_vertical"
         android:layout_centerHorizontal="true"
-        android:text="Status Text"
+        android:text=""
         android:textSize="14sp"
         android:layout_height="wrap_content" />
     <!--<ScrollView-->

@@ -2,6 +2,7 @@ package com.example.brittanyhsu.bhspotify;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -67,8 +68,8 @@ TODO: Try to slim it down even more
 public class FingerprintActivity extends AppCompatActivity {
 
     // set these values before running the sample
-    static final String 				gnsdkClientId 			=  "238374755";
-    static final String 				gnsdkClientTag 			= "726C6F39ABA4CACFACD07EACF6D19C53";
+    static final String 				gnsdkClientId 			=  Constants.GNSDK_CLIENT_ID;
+    static final String 				gnsdkClientTag 			= Constants.GNSDK_CLIENT_TAG;
     static final String 				gnsdkLicenseFilename 	= "mylicensefile.txt";	// app expects this file as an "asset"
     private static final String    		gnsdkLogFilename 		= "sample.log";
     private static final String 		appString				= "BHSpotifyxShazam";
@@ -113,10 +114,17 @@ public class FingerprintActivity extends AppCompatActivity {
     private volatile boolean			analyzingCollection 	 = false;
     private volatile boolean			analyzeCancelled 	 	 = false;
 
+    public String accessToken = "";
+
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Intent intent = getIntent();
+
+        if(intent.getStringExtra("access token") != null)
+            accessToken = intent.getStringExtra("access token");
 
         createUI();
 
@@ -1350,6 +1358,7 @@ public class FingerprintActivity extends AppCompatActivity {
         Log.d(appString, "getTrackInfo called");
 
         String artist = album.trackMatched().artist().name().display();
+        String track =  album.trackMatched().title().display();
         if(!artist.isEmpty())
             Log.d(appString, "artist: " + artist);
 
@@ -1360,7 +1369,13 @@ public class FingerprintActivity extends AppCompatActivity {
         }
 
         if ( album.trackMatched() != null ) {
-            Log.d(appString, "track: " + album.trackMatched().title().display());
+            Log.d(appString, "track: " + track);
+            Intent searchIntent = new Intent(FingerprintActivity.this, SearchableActivity.class);
+            searchIntent.putExtra("track", track)
+                    .putExtra("artist", artist)
+                    .putExtra("access token", accessToken);
+
+            startActivity(searchIntent);
         }
     }
 

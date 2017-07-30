@@ -47,18 +47,32 @@ public class SearchableActivity extends AppCompatActivity {
     public final String BASE_URL = Constants.BASE_URL;
     private ImageView albumArt;
     public String accessToken = "";
+    public String track = "";
+    public String artist = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fingerprint);
+//        setContentView(R.layout.activity_main);
 
         Intent intent = getIntent();
 
         if(intent.getStringExtra("access token") != null)
             accessToken = intent.getStringExtra("access token");
 
+        if(intent.getStringExtra("track") != null)
+            track = intent.getStringExtra("track");
+
+        if(intent.getStringExtra("artist") != null) {
+            artist = intent.getStringExtra("artist");
+        }
+
         Log.d("SearchableActivity", "AccessToken onCreate: " + accessToken);
+        Log.d("SearchableActivity", "track + artist: " + track + " " + artist);
+
+        if(artist != null && track != null)
+            doMySearch(track + " " + artist);
+
     }
 
     @Override
@@ -78,6 +92,7 @@ public class SearchableActivity extends AppCompatActivity {
         handleIntent(intent);
     }
 
+    // not needed for fingerprint but needed for search bar.
     private void handleIntent(Intent intent) {
         if(Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);

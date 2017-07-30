@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements
 //        Intent intent = new Intent(MainActivity.this, SearchableActivity.class);
 //        Intent intent = new Intent(MainActivity.this, AddToPlaylist.class);
         Intent intent = new Intent(MainActivity.this, FingerprintActivity.class);
-//        intent.putExtra("access token", accessToken);
+        intent.putExtra("access token", accessToken);
 
         startActivity(intent);
     }
