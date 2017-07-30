@@ -30,6 +30,7 @@ import com.squareup.picasso.Picasso;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import okhttp3.Interceptor;
@@ -105,21 +106,38 @@ public class SearchableActivity extends AppCompatActivity {
     }
 
     public void doMySearch(String query) {
+        // Sometimes the query has '&', 'Featuring', and 'Feat.' which doesn't work in Spotify search.
+        // Also sometimes parentheses can mess it up which is annoying
+        // So gotta take them out...
         String withoutFeat = query;
-        String[] splitQuery = query.split(" ");
-        int deleteMePos = -1;
-        for(int i = 0; i < splitQuery.length; i++) {
-            if(splitQuery[i].equalsIgnoreCase("feat.")) {
-                deleteMePos = i;
-                break;
-            }
+        withoutFeat = withoutFeat.replaceAll("[()]",""); // Removing ()
+        withoutFeat = withoutFeat.replaceAll(",",""); // Removing ,
+        Log.d("SearchableActivity","DID () GO AWAY??? "+withoutFeat);
+
+        String[] splitQuery = withoutFeat.split(" "); // Split query into array of words
+
+        boolean removed = false;
+        List<String> queryList = new ArrayList<>(Arrays.asList(splitQuery));
+
+        // Remove all &, Feat., and Featuring
+        if(queryList.contains("&")) {
+            queryList.removeAll(Collections.singleton("&"));
+            removed = true;
+        }
+        if(queryList.contains("Feat.")) {
+            queryList.removeAll(Collections.singleton("Feat."));
+            removed = true;
         }
 
-        if(deleteMePos != -1) {
-            List<String> queryList = new ArrayList<>(Arrays.asList(splitQuery));
-            queryList.remove(deleteMePos);
-            withoutFeat = TextUtils.join(" ", queryList);
+        if(queryList.contains("Featuring")) {
+            queryList.removeAll(Collections.singleton("Featuring"));
+            removed = true;
         }
+
+        if(removed == true)
+            withoutFeat = TextUtils.join(" ", queryList);
+
+
 
         Log.d("SearchableActivity", withoutFeat);
 

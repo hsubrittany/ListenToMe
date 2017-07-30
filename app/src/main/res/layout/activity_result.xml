@@ -24,7 +24,7 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:gravity="center_horizontal"
-        android:textSize="22sp"
+        android:textSize="18sp"
         android:layout_centerHorizontal="true"/>
 
     <TextView
@@ -32,23 +32,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
-        android:textSize="18sp"
+        android:textSize="15sp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
+        android:layout_marginTop="5dp"
 
         android:layout_below="@+id/trackTitle"
         android:gravity="center_horizontal"
         android:layout_centerHorizontal="true"/>
-
-    <!--<ImageButton-->
-        <!--android:id="@+id/button_play"-->
-        <!--android:layout_width="70dp"-->
-        <!--android:layout_height="70dp"-->
-        <!--android:layout_below="@+id/artistName"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_margin="25dp"-->
-        <!--android:background="@drawable/play_button"-->
-        <!--android:gravity="center_horizontal" />-->
 
     <Button
         android:id="@+id/button_add_track"
