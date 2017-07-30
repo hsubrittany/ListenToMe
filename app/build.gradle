@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 
 android {
-<<<<<<< HEAD
     compileSdkVersion 23
     buildToolsVersion '25.0.0'
 
@@ -11,37 +10,11 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
-=======
-    signingConfigs {
-        config {
-            keyAlias 'key1'
-            keyPassword 'android'
-            storeFile file('/Applications/Android Studio.app/Contents/bin/releaseKeystore')
-            storePassword 'android'
-        }
-    }
-    compileSdkVersion 25
-    buildToolsVersion "26.0.0"
-    defaultConfig {
-        applicationId "com.example.brittanyhsu.bhspotify"
-        minSdkVersion 16
-        targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
->>>>>>> 3bd07be0f7c8b51c2579b84aaf66689b093149df
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-<<<<<<< HEAD
-=======
-            signingConfig signingConfigs.config
-        }
-        debug {
-            signingConfig signingConfigs.config
->>>>>>> 3bd07be0f7c8b51c2579b84aaf66689b093149df
         }
     }
 }
@@ -54,7 +27,6 @@ repositories {
 }
 
 dependencies {
-<<<<<<< HEAD
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.4.0'
@@ -65,15 +37,6 @@ dependencies {
     compile 'com.spotify.sdk:spotify-android-auth:1.0.0@aar'
     compile 'com.spotify.sdk:spotify-player:24-noconnect-2.20b@aar'
 
-=======
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.spotify.sdk:spotify-android-auth:1.0.0@aar'
-    compile 'com.spotify.sdk:spotify-player:24-noconnect-2.20b@aar'
-    compile 'com.android.support:appcompat-v7:25.3.1'
->>>>>>> 3bd07be0f7c8b51c2579b84aaf66689b093149df
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
 
     compile 'com.google.code.gson:gson:2.7'
@@ -81,13 +44,4 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
 
     compile "com.squareup.picasso:picasso:2.4.0"
-<<<<<<< HEAD
-=======
-
-    compile files('libs/GN_Music_SDK.jar')
-//    compile files('libs/gnsdk.jar')
-//    compile files('libs/gnsdk_helpers.jar')
-
-    testCompile 'junit:junit:4.12'
->>>>>>> 3bd07be0f7c8b51c2579b84aaf66689b093149df
 }

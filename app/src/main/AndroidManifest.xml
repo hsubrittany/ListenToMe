@@ -1,31 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-<<<<<<< HEAD
     package="com.example.brittanyhsu.bhspotify" >
-=======
-    package="com.example.brittanyhsu.bhspotify">
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
->>>>>>> 3bd07be0f7c8b51c2579b84aaf66689b093149df
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-<<<<<<< HEAD
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <uses-library android:name="com.google.android.maps" android:required="false"/>
         <activity android:name="com.example.brittanyhsu.bhspotify.MainActivity"
-=======
-
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
->>>>>>> 3bd07be0f7c8b51c2579b84aaf66689b093149df
             android:label="@string/app_name"
             android:theme="@style/Theme.MyCompatTheme">
             <intent-filter>
@@ -39,11 +23,7 @@
 
 
         </activity>
-<<<<<<< HEAD
         <activity android:name="com.example.brittanyhsu.bhspotify.SearchableActivity"
-=======
-        <activity android:name=".SearchableActivity"
->>>>>>> 3bd07be0f7c8b51c2579b84aaf66689b093149df
             android:label="@string/app_name"
             android:theme="@style/Theme.MyCompatTheme"
             android:launchMode="singleInstance">
@@ -57,7 +37,6 @@
         </activity>
 
 
-<<<<<<< HEAD
         <activity android:name="com.example.brittanyhsu.bhspotify.GetMyPlaylists"
             android:label="@string/app_name">
         </activity>
@@ -65,18 +44,6 @@
         <activity android:name="com.example.brittanyhsu.bhspotify.FingerprintActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.MyCompatTheme">
-=======
-        <activity android:name=".GetMyPlaylists"
-            android:label="@string/app_name">
-        </activity>
-
-        <activity android:name=".AddToPlaylist"
-            android:label="@string/app_name">
-        </activity>
-
-        <activity android:name=".FingerprintActivity"
-            android:label="@string/app_name">
->>>>>>> 3bd07be0f7c8b51c2579b84aaf66689b093149df
         </activity>
 
 
@@ -87,7 +54,6 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
     </application>
 
-<<<<<<< HEAD
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -97,8 +63,3 @@
 </manifest>
 
 
-=======
-
-
-</manifest>
->>>>>>> 3bd07be0f7c8b51c2579b84aaf66689b093149df

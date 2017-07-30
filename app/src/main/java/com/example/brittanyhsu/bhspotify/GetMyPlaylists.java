@@ -30,11 +30,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class GetMyPlaylists extends Activity {
 
     public final String BASE_URL = Constants.BASE_URL;
-<<<<<<< HEAD
     public ArrayList<String> pl = new ArrayList<>();
     public String[] playlists;
-=======
->>>>>>> 3bd07be0f7c8b51c2579b84aaf66689b093149df
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +39,7 @@ public class GetMyPlaylists extends Activity {
         getPlaylists();
     }
 
-<<<<<<< HEAD
     String[] getPlaylists() {
-=======
-    void getPlaylists() {
-//        Intent intent = getIntent();
->>>>>>> 3bd07be0f7c8b51c2579b84aaf66689b093149df
         final String accessToken = getIntent().getStringExtra("access token");
 
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
@@ -90,29 +82,16 @@ public class GetMyPlaylists extends Activity {
                         JSONObject myResponse = jsonObject.getJSONObject("body");
                         JSONArray itemResponse = (JSONArray) myResponse.get("items");
 
-<<<<<<< HEAD
                         playlists = new String[itemResponse.length()];
                         for(int i = 0; i < itemResponse.length(); i++) {
                             pl.add(itemResponse.getJSONObject(i).getString("name"));
                             playlists[i] = itemResponse.getJSONObject(i).getString("name");
                         }
                         Log.d("GetMyPlaylists", "Displaying names of my playlists... " + pl);
-=======
-                        ArrayList<String> list = new ArrayList<String>();
-                        for(int i = 0; i < itemResponse.length(); i++) {
-                            list.add(itemResponse.getJSONObject(i).getString("name"));
-                        }
-                        Log.d("GetMyPlaylists", "Displaying names of my playlists... " + list);
->>>>>>> 3bd07be0f7c8b51c2579b84aaf66689b093149df
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 3bd07be0f7c8b51c2579b84aaf66689b093149df
                 }
             }
 
@@ -121,10 +100,7 @@ public class GetMyPlaylists extends Activity {
                 Log.d("GetMyPlaylists", "Failed to get playlists :-(");
             }
         });
-<<<<<<< HEAD
         return playlists;
-=======
->>>>>>> 3bd07be0f7c8b51c2579b84aaf66689b093149df
     }
 
 }

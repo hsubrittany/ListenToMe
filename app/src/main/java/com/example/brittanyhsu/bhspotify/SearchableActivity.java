@@ -25,13 +25,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.squareup.picasso.Picasso;
 
-<<<<<<< HEAD
-=======
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
->>>>>>> 3bd07be0f7c8b51c2579b84aaf66689b093149df
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -58,11 +51,7 @@ public class SearchableActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-<<<<<<< HEAD
         setContentView(R.layout.activity_fingerprint);
-=======
-        setContentView(R.layout.activity_main);
->>>>>>> 3bd07be0f7c8b51c2579b84aaf66689b093149df
 
         Intent intent = getIntent();
 
@@ -234,11 +223,7 @@ public class SearchableActivity extends AppCompatActivity {
     }
 
     private void openListDialog(final String[] play, final SpotifyAPI client, final String owner_id,
-<<<<<<< HEAD
                                 final String[] playlist_ids, final String uri, final String trackName) {
-=======
-                            final String[] playlist_ids, final String uri, final String trackName) {
->>>>>>> 3bd07be0f7c8b51c2579b84aaf66689b093149df
         final AlertDialog.Builder myDialog = new AlertDialog.Builder(this);
         myDialog.setTitle(Html.fromHtml("<font color='#000000'>Add to playlist</font>"))
                 .setItems(play,new DialogInterface.OnClickListener() {

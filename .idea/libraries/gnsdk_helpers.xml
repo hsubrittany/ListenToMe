@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="gnsdk_helpers">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/app/libs/gnsdk_helpers.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

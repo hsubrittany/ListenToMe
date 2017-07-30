@@ -33,20 +33,13 @@
         android:layout_height="wrap_content"
         android:text=""
         android:textSize="18sp"
-<<<<<<< HEAD
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
 
-=======
-        android:paddingBottom="50dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
->>>>>>> 3bd07be0f7c8b51c2579b84aaf66689b093149df
         android:layout_below="@+id/trackTitle"
         android:gravity="center_horizontal"
         android:layout_centerHorizontal="true"/>
 
-<<<<<<< HEAD
     <!--<ImageButton-->
         <!--android:id="@+id/button_play"-->
         <!--android:layout_width="70dp"-->
@@ -59,19 +52,11 @@
 
     <Button
         android:id="@+id/button_add_track"
-=======
-    <Button
-        android:id="@+id/button_add_track"
-        android:src="@mipmap/play_button"
->>>>>>> 3bd07be0f7c8b51c2579b84aaf66689b093149df
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/artistName"
         android:layout_centerHorizontal="true"
-<<<<<<< HEAD
         android:layout_marginTop="40dp"
-=======
->>>>>>> 3bd07be0f7c8b51c2579b84aaf66689b093149df
         android:backgroundTint="@color/background"
         android:gravity="center_horizontal"
         android:text="@string/button_name"

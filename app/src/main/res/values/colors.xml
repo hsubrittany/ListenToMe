@@ -3,7 +3,6 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-<<<<<<< HEAD
     <color name="gracenote_red">#ffbd0400</color>
     <color name="gray">#ff757575</color>
     <color name="off_white">#f0f0f0</color>
@@ -14,6 +13,4 @@
     <color name="red">#C2000E</color>
     <color name="black">#000000</color>
     <color name="bright_red">#FF0000</color>
-=======
->>>>>>> 3bd07be0f7c8b51c2579b84aaf66689b093149df
 </resources>

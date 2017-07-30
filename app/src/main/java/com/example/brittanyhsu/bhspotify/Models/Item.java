@@ -3,10 +3,6 @@ package com.example.brittanyhsu.bhspotify.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 3bd07be0f7c8b51c2579b84aaf66689b093149df
 import java.util.List;
 
 /**
