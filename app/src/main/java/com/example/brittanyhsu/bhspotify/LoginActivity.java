@@ -114,9 +114,9 @@ public class LoginActivity extends AppCompatActivity implements
 //        mPlayer.playUri(null, "spotify:track:4TJNW3JPNoxtsqmZjLKGk0", 0, 0);
 
 //        Intent intent = new Intent(LoginActivity.this, GetMyPlaylists.class);
-        Intent intent = new Intent(LoginActivity.this, SearchableActivity.class);
+//        Intent intent = new Intent(LoginActivity.this, SearchableActivity.class);
 //        Intent intent = new Intent(LoginActivity.this, AddToPlaylist.class);
-//        Intent intent = new Intent(LoginActivity.this, FingerprintActivity.class);
+        Intent intent = new Intent(LoginActivity.this, FingerprintActivity.class);
         intent.putExtra("access token", accessToken);
 
         startActivity(intent);
