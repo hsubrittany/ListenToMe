@@ -12,6 +12,7 @@
         <item name="android:windowBackground">@color/winBackground</item>
         <item name="android:actionBarStyle">@style/ActionBar</item>
         <item name="actionBarStyle">@style/ActionBar</item>
+        <item name="alertDialogTheme">@style/MyAlertDialog</item>
         <item name="android:textColor">#ffffff</item>
     </style>
 
@@ -19,6 +20,10 @@
         parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@color/background</item>
         <item name="background">@color/background</item>
+    </style>
+    
+    <style name="MyAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:textColor">@color/winBackground</item>
     </style>
 
     <color name="winBackground">#000000</color>

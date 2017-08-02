@@ -51,9 +51,9 @@ public class SearchableActivity extends AppCompatActivity {
 
     public final String BASE_URL = Constants.BASE_URL;
     private ImageView albumArt;
-    public String accessToken = "";
-    public String track = "";
-    public String artist = "";
+    public String accessToken = null;
+    public String track = null;
+    public String artist = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,7 +73,6 @@ public class SearchableActivity extends AppCompatActivity {
         }
 
         Log.d("SearchableActivity", "AccessToken onCreate: " + accessToken);
-        Log.d("SearchableActivity", "track + artist: " + track + " " + artist);
 
         if(artist != null && track != null)
             doMySearch(track + " " + artist);
@@ -134,7 +133,7 @@ public class SearchableActivity extends AppCompatActivity {
             removed = true;
         }
 
-        if(removed == true)
+        if(removed)
             withoutFeat = TextUtils.join(" ", queryList);
 
 
@@ -283,7 +282,7 @@ public class SearchableActivity extends AppCompatActivity {
     private void openListDialog(final String[] play, final SpotifyAPI client, final String owner_id,
                                 final String[] playlist_ids, final String uri, final String trackName) {
         final AlertDialog.Builder myDialog = new AlertDialog.Builder(this);
-        myDialog.setTitle(Html.fromHtml("<font color='#000000'>Add to playlist</font>"))
+        myDialog.setTitle("Add to playlist")
                 .setItems(play,new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int chosen) {
@@ -315,7 +314,7 @@ public class SearchableActivity extends AppCompatActivity {
 
     private void openSuccessDialog(String playlistName, String trackName) {
         final AlertDialog.Builder successDialog = new AlertDialog.Builder(this);
-        successDialog.setTitle(Html.fromHtml("<font color='#000000'>Success</font>"))
+        successDialog.setTitle("Success")
                 .setMessage(trackName + " added to " + playlistName);
 
         final AlertDialog alert = successDialog.create();
@@ -343,7 +342,7 @@ public class SearchableActivity extends AppCompatActivity {
 
     private void openSearchErrorDialog() {
         AlertDialog.Builder errorDialog = new AlertDialog.Builder(this);
-        errorDialog.setTitle(Html.fromHtml("<font color='#000000'>Error</font>"))
+        errorDialog.setTitle("Error")
                 .setMessage("No tracks found. Try again.")
                 .create().show();
     }
