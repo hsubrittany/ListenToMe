@@ -21,13 +21,16 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.brittanyhsu.bhspotify.Models.Data;
 import com.example.brittanyhsu.bhspotify.Models.ItemSearch;
 import com.example.brittanyhsu.bhspotify.Models.Playlist;
+import com.example.brittanyhsu.bhspotify.Models.UserProfile;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.spotify.sdk.android.player.Spotify;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -57,11 +60,11 @@ public class SearchableActivity extends AppCompatActivity {
     public String accessToken = null;
     public String track = null;
     public String artist = null;
+    public String userid = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
 
         Intent intent = getIntent();
 
@@ -243,8 +246,39 @@ public class SearchableActivity extends AppCompatActivity {
         });
     }
 
+    void getUserId(SpotifyAPI client) throws IOException {
+        Call<UserProfile> call = client.getUser();
+        call.enqueue(new Callback<UserProfile>() {
+            @Override
+            public void onResponse(Call<UserProfile> call, Response<UserProfile> response) {
+                if(!response.isSuccessful()) {
+                    try {
+                        Log.d("SearchableActivity", "User Id Error " + response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                else {
+                    userid = response.body().getId();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserProfile> call, Throwable t) {
+
+            }
+        });
+    }
+
     void getPlaylists(final SpotifyAPI client, final String uri, final String trackTitle) {
         Call<Playlist> call = client.getMyPlaylists();
+        try {
+            getUserId(client);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         call.enqueue(new Callback<Playlist>() {
             @Override
             public void onResponse(Call<Playlist> call, Response<Playlist> response) {
@@ -258,13 +292,14 @@ public class SearchableActivity extends AppCompatActivity {
                     }
                 }
                 else {
+                    Log.d("SearchableActivity", "2) user id is " + userid);
                     String owner_id = "";
                     ArrayList<String> myOwnPlaylists = new ArrayList<>();
 
                     for(int i = 0; i < response.body().getItems().size(); i++) {
                         owner_id = response.body().getItems().get(i).getOwner().getId();
 
-                        if(owner_id.equals(Constants.OWNER_ID)) {
+                        if(owner_id.equals(userid)) {
                             myOwnPlaylists.add(response.body().getItems().get(i).getName());
                         }
                     }
