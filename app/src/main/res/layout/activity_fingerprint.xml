@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/statusText"
         android:layout_centerHorizontal="true"
-        app:lottie_colorFilter="@color/background"
+        app:lottie_colorFilter="@color/animation"
         android:id="@+id/loadingAnimation" />
 
     <TextView

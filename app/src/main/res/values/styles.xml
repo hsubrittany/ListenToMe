@@ -27,6 +27,7 @@
     </style>
 
     <color name="winBackground">#000000</color>
-    <color name="background">#16594c</color>
+    <color name="background">#0e5351</color>
+    <color name="animation">#1b7c79</color>
 
 </resources>
