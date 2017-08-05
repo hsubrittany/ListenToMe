@@ -10,14 +10,17 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.gracenote.gnsdk.GnAlbum;
 import com.gracenote.gnsdk.GnAlbumIterator;
 import com.gracenote.gnsdk.GnAssetFetch;
@@ -79,6 +82,7 @@ public class FingerprintActivity extends AppCompatActivity {
 
 //    private SettingsMenu				settingsMenu;
     private Button 						buttonIDNow;
+    private ImageView                   buttonFingerprint;
 
     // Gracenote objects
     private GnManager gnManager;
@@ -212,6 +216,7 @@ public class FingerprintActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        statusText.setVisibility(View.INVISIBLE);
 
         if ( gnMusicIdStream != null ) {
 
@@ -260,31 +265,77 @@ public class FingerprintActivity extends AppCompatActivity {
         }
     }
 
+//    public void onBackPressed(){
+//        final ProgressBar pg = (ProgressBar) findViewById(R.id.progressBar);
+//        if(pg.isShown())
+//            pg.setVisibility(View.INVISIBLE);
+//    }
+
 
     private void createUI() {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_fingerprint);
 
-        buttonIDNow = (Button) findViewById(R.id.buttonIDNow);
-        buttonIDNow.setEnabled( false );
-        buttonIDNow.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                setUIState( UIState.INPROGRESS );
-                clearResults();
+//        final ProgressBar pg = (ProgressBar) findViewById(R.id.progressBar);
+//        pg.setVisibility(View.INVISIBLE);
 
-                try {
+        final LottieAnimationView lottieAnimationView = (LottieAnimationView) findViewById(R.id.loadingAnimation);
+        lottieAnimationView.setAnimation("search.json");
+        lottieAnimationView.setScale(10);
 
-                    gnMusicIdStream.identifyAlbumAsync();
-                    lastLookup_startTime = SystemClock.elapsedRealtime();
+//        if(lottieAnimationView.isAnimating())
+//            lottieAnimationView.cancelAnimation();
 
-                } catch (GnException e) {
+        lottieAnimationView.loop(true);
+        lottieAnimationView.playAnimation();
 
-                    Log.e( appString, e.errorCode() + ", " + e.errorDescription() + ", " + e.errorModule() );
-                    showError( e.errorAPI() + ": " +  e.errorDescription() );
+//        buttonIDNow = (Button) findViewById(R.id.buttonIDNow);
+        buttonFingerprint = (ImageView) findViewById(R.id.loadingAnimation);
+        buttonFingerprint.setEnabled( false );
+        buttonFingerprint.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                    setUIState( UIState.INPROGRESS );
+                    clearResults();
 
+                    try {
+
+                        gnMusicIdStream.identifyAlbumAsync();
+                        lastLookup_startTime = SystemClock.elapsedRealtime();
+
+                    } catch (GnException e) {
+
+                        Log.e( appString, e.errorCode() + ", " + e.errorDescription() + ", " + e.errorModule() );
+                        showError( e.errorAPI() + ": " +  e.errorDescription() );
+
+                    }
+                    return true;
                 }
+                return false;
             }
         });
+//        buttonFingerprint.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                lottieAnimationView.loop(true);
+//                lottieAnimationView.playAnimation();
+//                setUIState( UIState.INPROGRESS );
+//                clearResults();
+//
+//                try {
+//
+//                    gnMusicIdStream.identifyAlbumAsync();
+//                    lastLookup_startTime = SystemClock.elapsedRealtime();
+//
+//                } catch (GnException e) {
+//
+//                    Log.e( appString, e.errorCode() + ", " + e.errorDescription() + ", " + e.errorModule() );
+//                    showError( e.errorAPI() + ": " +  e.errorDescription() );
+//
+//                }
+//            }
+//        });
 
         statusText = (TextView) findViewById(R.id.statusText);
 
@@ -633,7 +684,7 @@ public class FingerprintActivity extends AppCompatActivity {
                 audioProcessingStarted = true;
                 activity.runOnUiThread(new Runnable (){
                     public void run(){
-                        buttonIDNow.setEnabled(true);
+                        buttonFingerprint.setEnabled(true);
                     }
                 });
 
@@ -747,7 +798,7 @@ public class FingerprintActivity extends AppCompatActivity {
 
             boolean enabled = (uiState == UIState.READY);
 
-            buttonIDNow.setEnabled( enabled && audioProcessingStarted);
+            buttonFingerprint.setEnabled( enabled && audioProcessingStarted);
         }
 
     }

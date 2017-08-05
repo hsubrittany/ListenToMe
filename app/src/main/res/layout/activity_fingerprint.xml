@@ -3,15 +3,23 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center_vertical"
-    android:orientation="vertical" >
+    android:orientation="vertical">
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Tap button to find song."-->
+        <!--android:layout_marginBottom="5dp"-->
+        <!--android:id="@+id/directions"-->
+        <!--android:layout_centerHorizontal="true"/>-->
     <TextView
         android:id="@+id/statusLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:gravity="center_vertical"
-        android:text="Status:"
+        android:text="Tap button to find song..."
         android:textSize="18sp" />
 
     <TextView
@@ -27,15 +35,38 @@
         android:textSize="16sp"
         android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/buttonIDNow"
+    <com.airbnb.lottie.LottieAnimationView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_below="@id/statusText"
-        android:layout_marginTop="60dp"
-        android:backgroundTint="@color/background"
-        android:textSize="18sp"
-        android:text="Fingerprint" />
+        android:layout_centerHorizontal="true"
+        app:lottie_colorFilter="@color/background"
+        android:id="@+id/loadingAnimation" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/loadingAnimation"
+        android:layout_alignRight="@id/loadingAnimation"
+        android:layout_alignTop="@id/loadingAnimation"
+        android:layout_alignBottom="@id/loadingAnimation"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="LISTENING..."
+        android:textStyle="bold"
+        android:textSize="14sp"
+        />
+
+    <!--<Button-->
+        <!--android:id="@+id/buttonIDNow"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_below="@id/loadingAnimation"-->
+        <!--android:backgroundTint="@color/background"-->
+        <!--android:textSize="18sp"-->
+        <!--android:text="Fingerprint" />-->
+
+
 </RelativeLayout>
 
