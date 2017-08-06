@@ -118,7 +118,7 @@ public class SearchableActivity extends AppCompatActivity {
         }
     }
 
-    public void doMySearch(String query) {
+    public String parse(String query) {
         // Sometimes the query has '&', 'Featuring', and 'Feat.' which doesn't work in Spotify search.
         // Also sometimes parentheses can mess it up which is annoying
         // So gotta take them out...
@@ -132,7 +132,6 @@ public class SearchableActivity extends AppCompatActivity {
         boolean removed = false;
         List<String> queryList = new ArrayList<>(Arrays.asList(splitQuery));
 
-        // Remove all &, Feat., and Featuring
         if(queryList.contains("&")) {
             queryList.removeAll(Collections.singleton("&"));
             removed = true;
@@ -150,6 +149,11 @@ public class SearchableActivity extends AppCompatActivity {
         if(removed)
             withoutFeat = TextUtils.join(" ", queryList);
 
+        return withoutFeat;
+    }
+
+    public void doMySearch(String query) {
+        String withoutFeat = parse(query);
 
 
         Log.d("SearchableActivity", withoutFeat);
