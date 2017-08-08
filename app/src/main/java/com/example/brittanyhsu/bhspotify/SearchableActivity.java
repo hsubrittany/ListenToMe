@@ -119,7 +119,6 @@ public class SearchableActivity extends AppCompatActivity {
     }
 
     /*
-    sometimes they mess up and theres no space between char and (..... wtf
     they spelled playboi carti, kehlani wrong in featuring...........
      */
 
@@ -128,7 +127,7 @@ public class SearchableActivity extends AppCompatActivity {
         // Also sometimes parentheses can mess it up which is annoying
         // So gotta take them out...
         String withoutFeat = query.toLowerCase();
-        withoutFeat = withoutFeat.replaceAll("[\\[\\]()]",""); // Removing () AND []
+        withoutFeat = withoutFeat.replaceAll("[\\[\\]()]"," "); // Removing () AND []
         withoutFeat = withoutFeat.replaceAll(",",""); // Removing ,
         Log.d("SearchableActivity","DID () [] GO AWAY??? "+withoutFeat);
 
