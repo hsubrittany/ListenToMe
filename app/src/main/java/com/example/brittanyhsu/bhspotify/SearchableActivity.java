@@ -265,7 +265,9 @@ public class SearchableActivity extends AppCompatActivity {
                     "Title: " + item.getName() + '\n' + "Artist(s): " + artistString +
                             '\n' + "Album: " + item.getAlbum().getName() + '\n' + "URI: " + item.getUri());
 
-                    String albumUrl = item.getAlbum().getImages().get(0).getUrl();
+                    String albumUrl = "";
+                    if(item.getAlbum().getImages() != null)
+                        albumUrl = item.getAlbum().getImages().get(0).getUrl();
 
                     int imageWidth = getScreenWidth() - 100;
 
