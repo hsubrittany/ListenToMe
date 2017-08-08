@@ -118,14 +118,19 @@ public class SearchableActivity extends AppCompatActivity {
         }
     }
 
+    /*
+    sometimes they mess up and theres no space between char and (..... wtf
+    they spelled playboi carti, kehlani wrong in featuring...........
+     */
+
     public String parse(String query) {
         // Sometimes the query has '&', 'Featuring', and 'Feat.' which doesn't work in Spotify search.
         // Also sometimes parentheses can mess it up which is annoying
         // So gotta take them out...
-        String withoutFeat = query;
-        withoutFeat = withoutFeat.replaceAll("[()]",""); // Removing ()
+        String withoutFeat = query.toLowerCase();
+        withoutFeat = withoutFeat.replaceAll("[\\[\\]()]",""); // Removing () AND []
         withoutFeat = withoutFeat.replaceAll(",",""); // Removing ,
-        Log.d("SearchableActivity","DID () GO AWAY??? "+withoutFeat);
+        Log.d("SearchableActivity","DID () [] GO AWAY??? "+withoutFeat);
 
         String[] splitQuery = withoutFeat.split(" "); // Split query into array of words
 
@@ -136,13 +141,58 @@ public class SearchableActivity extends AppCompatActivity {
             queryList.removeAll(Collections.singleton("&"));
             removed = true;
         }
-        if(queryList.contains("Feat.")) {
-            queryList.removeAll(Collections.singleton("Feat."));
+        if(queryList.contains("feat.")) {
+            queryList.removeAll(Collections.singleton("feat."));
             removed = true;
         }
 
-        if(queryList.contains("Featuring")) {
-            queryList.removeAll(Collections.singleton("Featuring"));
+        if(queryList.contains("featuring")) {
+            queryList.removeAll(Collections.singleton("featuring"));
+            removed = true;
+        }
+
+        if(queryList.contains("original")) {
+            queryList.removeAll(Collections.singleton("original"));
+            removed = true;
+        }
+
+        if(queryList.contains("mix")) {
+            queryList.removeAll(Collections.singleton("mix"));
+            removed = true;
+        }
+
+        if(queryList.contains("amended")) {
+            queryList.removeAll(Collections.singleton("amended"));
+            removed = true;
+        }
+
+        if(queryList.contains("album")) {
+            queryList.removeAll(Collections.singleton("album"));
+            removed = true;
+        }
+
+        if(queryList.contains("version")) {
+            queryList.removeAll(Collections.singleton("version"));
+            removed = true;
+        }
+
+        if(queryList.contains("single")) {
+            queryList.removeAll(Collections.singleton("single"));
+            removed = true;
+        }
+
+        if(queryList.contains("radio")) {
+            queryList.removeAll(Collections.singleton("radio"));
+            removed = true;
+        }
+
+        if(queryList.contains("edit")) {
+            queryList.removeAll(Collections.singleton("edit"));
+            removed = true;
+        }
+
+        if(queryList.contains("extended")) {
+            queryList.removeAll(Collections.singleton("extended"));
             removed = true;
         }
 
@@ -156,7 +206,7 @@ public class SearchableActivity extends AppCompatActivity {
         String withoutFeat = parse(query);
 
 
-        Log.d("SearchableActivity", withoutFeat);
+        Log.d("SearchableActivity","After parsing: " + withoutFeat);
 
 
         setContentView(R.layout.activity_result);
