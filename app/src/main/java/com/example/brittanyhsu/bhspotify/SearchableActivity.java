@@ -382,40 +382,18 @@ public class SearchableActivity extends AppCompatActivity {
         final List<String> playlistsChosen = new ArrayList<String>();
         final List<String> playlistIDs = new ArrayList<String>();
         myDialog.setTitle("Add to playlist")
-//                .setItems(play,new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int chosen) {
-//                        // int chosen : position of chosen playlist
-//                        String playlistChosen = "";
-//                        String playlistID = "";
-//                        for(int i = 0; i < play.length; i++) {
-//                            if(i == chosen) {
-//                                playlistChosen = play[i];
-//                                playlistID = playlist_ids[i];
-//                                Log.d("SearchableActivity", "playlistChosen: " + playlistChosen);
-//                                Log.d("SearchableActivity", "playlistID: " + playlistID);
-//                                break;
-//                            }
-//                        }
-//
-//                        AddToPlaylist ap = new AddToPlaylist();
-//                        String addTrack = ap.add(client, owner_id, playlistID, uri);
-//
-//                        if(addTrack.equals("success")) {
-//                            Log.d("SearchableActivity", "added track successfully");
-//                            openSuccessDialog(playlistChosen, trackName);
-//                        }
-//
-//                    }
-//                })
                 .setMultiChoiceItems(play,null, new DialogInterface.OnMultiChoiceClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                        playlistsChosen.add(play[which]);
-                        playlistIDs.add(playlist_ids[which]);
-
-
+                        if(isChecked) {
+                            playlistsChosen.add(play[which]);
+                            playlistIDs.add(playlist_ids[which]);
+                        }
+                        else if(playlistsChosen.contains(play[which])) {
+                            playlistsChosen.remove(play[which]);
+                            playlistIDs.remove(playlist_ids[which]);
+                        }
                     }
                 })
         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
