@@ -10,18 +10,15 @@ import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
-import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.brittanyhsu.bhspotify.Models.Data;
@@ -30,7 +27,6 @@ import com.example.brittanyhsu.bhspotify.Models.Playlist;
 import com.example.brittanyhsu.bhspotify.Models.UserProfile;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.spotify.sdk.android.player.Spotify;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -383,33 +379,63 @@ public class SearchableActivity extends AppCompatActivity {
     private void openListDialog(final String[] play, final SpotifyAPI client, final String owner_id,
                                 final String[] playlist_ids, final String uri, final String trackName) {
         final AlertDialog.Builder myDialog = new AlertDialog.Builder(this);
+        final List<String> playlistsChosen = new ArrayList<String>();
+        final List<String> playlistIDs = new ArrayList<String>();
         myDialog.setTitle("Add to playlist")
-                .setItems(play,new DialogInterface.OnClickListener() {
+//                .setItems(play,new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int chosen) {
+//                        // int chosen : position of chosen playlist
+//                        String playlistChosen = "";
+//                        String playlistID = "";
+//                        for(int i = 0; i < play.length; i++) {
+//                            if(i == chosen) {
+//                                playlistChosen = play[i];
+//                                playlistID = playlist_ids[i];
+//                                Log.d("SearchableActivity", "playlistChosen: " + playlistChosen);
+//                                Log.d("SearchableActivity", "playlistID: " + playlistID);
+//                                break;
+//                            }
+//                        }
+//
+//                        AddToPlaylist ap = new AddToPlaylist();
+//                        String addTrack = ap.add(client, owner_id, playlistID, uri);
+//
+//                        if(addTrack.equals("success")) {
+//                            Log.d("SearchableActivity", "added track successfully");
+//                            openSuccessDialog(playlistChosen, trackName);
+//                        }
+//
+//                    }
+//                })
+                .setMultiChoiceItems(play,null, new DialogInterface.OnMultiChoiceClickListener() {
+
                     @Override
-                    public void onClick(DialogInterface dialog, int chosen) {
-                        // int chosen : position of chosen playlist
-                        String playlistChosen = "";
-                        String playlistID = "";
-                        for(int i = 0; i < play.length; i++) {
-                            if(i == chosen) {
-                                playlistChosen = play[i];
-                                playlistID = playlist_ids[i];
-                                Log.d("SearchableActivity", "playlistChosen: " + playlistChosen);
-                                Log.d("SearchableActivity", "playlistID: " + playlistID);
-                                break;
-                            }
-                        }
+                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                        playlistsChosen.add(play[which]);
+                        playlistIDs.add(playlist_ids[which]);
 
-                        AddToPlaylist ap = new AddToPlaylist();
-                        String addTrack = ap.add(client, owner_id, playlistID, uri);
-
-                        if(addTrack.equals("success")) {
-                            Log.d("SearchableActivity", "added track successfully");
-                            openSuccessDialog(playlistChosen, trackName);
-                        }
 
                     }
-                });
+                })
+        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                for(int i = 0; i < playlistIDs.size(); i++) {
+                    AddToPlaylist ap = new AddToPlaylist();
+                    String addTrack = ap.add(client,owner_id,playlistIDs.get(i),uri);
+                }
+
+                openSuccessDialog(playlistsChosen.toString().replaceAll("[\\[\\]]",""),trackName);
+            }
+        })
+        .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
         myDialog.create().show();
     }
 
