@@ -344,7 +344,6 @@ public class SearchableActivity extends AppCompatActivity {
                     }
                 }
                 else {
-                    Log.d("SearchableActivity", "2) user id is " + userid);
                     String owner_id = "";
                     ArrayList<String> myOwnPlaylists = new ArrayList<>();
 
@@ -356,16 +355,17 @@ public class SearchableActivity extends AppCompatActivity {
                         }
                     }
 
-                    String[] playlists = new String[myOwnPlaylists.size()];
-                    String[] playlist_ids = new String[myOwnPlaylists.size()];
+                    List<String> playlist_ids = new ArrayList<>();
                     for(int i = 0; i < myOwnPlaylists.size(); i++) {
-                        playlists[i] = myOwnPlaylists.get(i);
-                        playlist_ids[i] = response.body().getItems().get(i).getId();
+                        playlist_ids.add(response.body().getItems().get(i).getId());
                     }
+
+                    String[] play = (String[]) myOwnPlaylists.toArray();
+                    String[] playID = (String[]) playlist_ids.toArray();
 
                     Log.d("SearchableActivity", "my playlists... " + myOwnPlaylists);
 
-                    openListDialog(playlists,client,owner_id,playlist_ids, uri, trackTitle);
+                    openListDialog(play,client,owner_id,playID, uri, trackTitle);
                 }
             }
 
@@ -377,43 +377,42 @@ public class SearchableActivity extends AppCompatActivity {
     }
 
     private void openListDialog(final String[] play, final SpotifyAPI client, final String owner_id,
-                                final String[] playlist_ids, final String uri, final String trackName) {
+                                final String[] playID, final String uri, final String trackName) {
         final AlertDialog.Builder myDialog = new AlertDialog.Builder(this);
-        final List<String> playlistsChosen = new ArrayList<String>();
-        final List<String> playlistIDs = new ArrayList<String>();
+        final List<String> playlistsChosen = new ArrayList<>();
+        final List<String> playlistIDs = new ArrayList<>();
+
         myDialog.setTitle("Add to playlist")
                 .setMultiChoiceItems(play,null, new DialogInterface.OnMultiChoiceClickListener() {
-
                     @Override
                     public void onClick(DialogInterface dialog, int which, boolean isChecked) {
                         if(isChecked) {
                             playlistsChosen.add(play[which]);
-                            playlistIDs.add(playlist_ids[which]);
+                            playlistIDs.add(playID[which]);
                         }
                         else if(playlistsChosen.contains(play[which])) {
                             playlistsChosen.remove(play[which]);
-                            playlistIDs.remove(playlist_ids[which]);
+                            playlistIDs.remove(playID[which]);
                         }
                     }
                 })
-        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                for(int i = 0; i < playlistIDs.size(); i++) {
-                    AddToPlaylist ap = new AddToPlaylist();
-                    String addTrack = ap.add(client,owner_id,playlistIDs.get(i),uri);
-                }
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        for(int i = 0; i < playlistIDs.size(); i++) {
+                            AddToPlaylist ap = new AddToPlaylist();
+                            ap.add(client,owner_id,playlistIDs.get(i),uri);
+                        }
 
-                openSuccessDialog(playlistsChosen.toString().replaceAll("[\\[\\]]",""),trackName);
-            }
-        })
-        .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+                        openSuccessDialog(playlistsChosen.toString().replaceAll("[\\[\\]]",""),trackName);
+                    }
+                })
+                .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
-            }
-        });
-
+                    }
+                });
         myDialog.create().show();
     }
 

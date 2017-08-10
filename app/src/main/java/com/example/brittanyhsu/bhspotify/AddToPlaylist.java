@@ -16,7 +16,7 @@ import retrofit2.Response;
 
 public class AddToPlaylist {
 
-    String add(SpotifyAPI client, String user_id, String playlist_id, String uri) {
+    void add(SpotifyAPI client, String user_id, String playlist_id, String uri) {
         Call<SnapshotId> addTrack = client.addToPlaylist(user_id, playlist_id, uri);
 
         addTrack.enqueue(new Callback<SnapshotId>() {
@@ -43,7 +43,6 @@ public class AddToPlaylist {
                 return;
             }
         });
-        return "success";
 
     }
 
