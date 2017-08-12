@@ -33,6 +33,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import okhttp3.Interceptor;
@@ -77,8 +78,7 @@ public class SearchableActivity extends AppCompatActivity {
         Log.d("SearchableActivity", "AccessToken onCreate: " + accessToken);
 
         if(artist != null && track != null)
-            doMySearch(track + " " + artist);
-
+            doMySearch(track,artist,false);
     }
 
     @Override
@@ -110,19 +110,38 @@ public class SearchableActivity extends AppCompatActivity {
     private void handleIntent(Intent intent) {
         if(Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
-            doMySearch(query);
+            doMySearch(query,null,false);
         }
     }
 
-    /*
-    they spelled playboi carti, kehlani wrong in featuring...........
-     */
+    public String parse(String track, String artist, boolean removeFeatArtist) {
+        // when removeFeatArtist is true, we are parsing again because Gracenote spelled a featuring artist wrong
+        // so we take all featuring artists out
+        int featIndex = -1;
+        if(removeFeatArtist) {
+            artist = artist.toLowerCase();
+            Log.d("SearchableActivity","old artist: " + artist);
 
-    public String parse(String query) {
+            if(artist.contains("featuring")) {
+                featIndex = artist.indexOf("featuring");
+            }
+            else if(artist.contains("feat.")) {
+                featIndex = artist.indexOf("feat.");
+            }
+
+            if(featIndex != -1) {
+                Log.d("SearchableActivity","feat index: " + featIndex);
+
+                // remove substring of featuring artists from string
+                artist = artist.replace(artist.substring(featIndex,artist.length()),"");
+                Log.d("SearchableActivity","new artist: " + artist);
+            }
+        }
+
         // Sometimes the query has '&', 'Featuring', and 'Feat.' which doesn't work in Spotify search.
         // Also sometimes parentheses can mess it up which is annoying
         // So gotta take them out...
-        String withoutFeat = query.toLowerCase();
+        String withoutFeat = (track + " " + artist).toLowerCase();
         withoutFeat = withoutFeat.replaceAll("[\\[\\]()]"," "); // Removing () AND []
         withoutFeat = withoutFeat.replaceAll(",",""); // Removing ,
         Log.d("SearchableActivity","DID () [] GO AWAY??? "+withoutFeat);
@@ -197,8 +216,8 @@ public class SearchableActivity extends AppCompatActivity {
         return withoutFeat;
     }
 
-    public void doMySearch(String query) {
-        String withoutFeat = parse(query);
+    public boolean doMySearch(final String track, final String artist, boolean removeFeatArtist) {
+        String withoutFeat = parse(track,artist,removeFeatArtist);
 
 
         Log.d("SearchableActivity","After parsing: " + withoutFeat);
@@ -243,6 +262,8 @@ public class SearchableActivity extends AppCompatActivity {
 
                 else {
                     if(response.body().getTracksSearch().getItems().isEmpty()) {
+                        if(doMySearch(track,artist,true))
+                            return;
                         openSearchErrorDialog();
                         return;
                     }
@@ -296,6 +317,7 @@ public class SearchableActivity extends AppCompatActivity {
                 Log.d("SearchableActivity","Search failed");
             }
         });
+        return true;
     }
 
     void getUserId(SpotifyAPI client) throws IOException {
