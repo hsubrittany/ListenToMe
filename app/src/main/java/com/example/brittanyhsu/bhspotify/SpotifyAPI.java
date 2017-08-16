@@ -6,8 +6,10 @@ import com.example.brittanyhsu.bhspotify.Models.SnapshotId;
 import com.example.brittanyhsu.bhspotify.Models.UserProfile;
 
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -28,4 +30,7 @@ public interface SpotifyAPI {
 
     @POST("/v1/users/{user_id}/playlists/{playlist_id}/tracks")
     Call<SnapshotId> addToPlaylist(@Path("user_id") String user_id, @Path("playlist_id") String playlist_id, @Query("uris") String uri);
+
+    @PUT("/v1/me/tracks")
+    Call<Response> saveTrack(@Query("ids") String trackID);
 }
