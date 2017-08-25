@@ -52,6 +52,10 @@
             android:theme="@style/Theme.MyCompatTheme">
         </activity>
 
+        <activity android:name="com.example.brittanyhsu.bhspotify.ViewPagerActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.MyCompatTheme">
+        </activity>
 
 
         <!-- Needed for LoginActivity to work -->
