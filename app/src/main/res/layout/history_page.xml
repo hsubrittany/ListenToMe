@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:style="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
 
@@ -13,7 +14,8 @@
         <android.support.v4.view.PagerTabStrip
             android:id="@+id/pager_tab"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            style="@style/MyPagerTabTextStyle">
         </android.support.v4.view.PagerTabStrip>
 
     </android.support.v4.view.ViewPager>

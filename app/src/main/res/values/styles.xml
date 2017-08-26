@@ -26,6 +26,10 @@
         <item name="android:textColor">@color/winBackground</item>
     </style>
 
+    <style name="MyPagerTabTextStyle">
+        <item name="android:textSize">16sp</item>
+    </style>
+
     <color name="winBackground">#000000</color>
     <color name="background">#0e5351</color>
     <color name="animation">#1b7c79</color>
