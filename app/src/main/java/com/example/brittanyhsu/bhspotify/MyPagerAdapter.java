@@ -1,6 +1,5 @@
 package com.example.brittanyhsu.bhspotify;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -22,7 +21,7 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch(position) {
             case 0:
-                return Fragment1.newInstance("Fragment 1", R.drawable.cool_cat);
+                return SearchableFragment.newInstance();
             case 1:
                 return Fragment2.newInstance("Fragment 2", "This works", R.drawable.cool_cat);
             default:
@@ -37,6 +36,13 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return "TAB " + position;
+        switch(position) {
+            case 0:
+                return "RESULT";
+            case 1:
+                return "HISTORY";
+            default:
+                return null;
+        }
     }
 }

@@ -826,7 +826,7 @@ public class FingerprintActivity extends AppCompatActivity {
             if (clearStatus) {
                 statusText.setText(status);
             } else {
-                statusText.setText((String) statusText.getText() + "\n" + status);
+                statusText.setText(statusText.getText() + "\n" + status);
             }
         }
 
@@ -928,7 +928,6 @@ public class FingerprintActivity extends AppCompatActivity {
                 }
             } catch (GnException e) {
                 setStatus(e.errorDescription(), true);
-                return;
             }
 
         }
@@ -950,7 +949,7 @@ public class FingerprintActivity extends AppCompatActivity {
 
         if ( album.trackMatched() != null ) {
             Log.d(appString, "track: " + track);
-            Intent searchIntent = new Intent(FingerprintActivity.this, SearchableActivity.class);
+            Intent searchIntent = new Intent(FingerprintActivity.this, ViewPagerActivity.class);
             searchIntent.putExtra("track", track)
                     .putExtra("artist", artist)
                     .putExtra("access token", accessToken);

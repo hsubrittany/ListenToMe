@@ -116,9 +116,9 @@ public class LoginActivity extends AppCompatActivity implements
 //        Intent intent = new Intent(LoginActivity.this, GetMyPlaylists.class);
 //        Intent intent = new Intent(LoginActivity.this, SearchableActivity.class);
 //        Intent intent = new Intent(LoginActivity.this, AddToPlaylist.class);
-//        Intent intent = new Intent(LoginActivity.this, FingerprintActivity.class);
-//        intent.putExtra("access token", accessToken);
-        Intent intent = new Intent(LoginActivity.this, ViewPagerActivity.class);
+        Intent intent = new Intent(LoginActivity.this, FingerprintActivity.class);
+        intent.putExtra("access token", accessToken);
+//        Intent intent = new Intent(LoginActivity.this, ViewPagerActivity.class);
 
         startActivity(intent);
     }
