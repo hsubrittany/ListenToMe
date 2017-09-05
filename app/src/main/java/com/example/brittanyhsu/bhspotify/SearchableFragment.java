@@ -62,6 +62,8 @@ public class SearchableFragment extends Fragment {
     private ViewGroup mContainer;
     private ViewGroup placeholder;
 
+    HistoryDBHelper myDb;
+
     public SearchableFragment() {
         // DO I NEED THIS
     }
@@ -86,6 +88,8 @@ public class SearchableFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);
+
+        myDb = new HistoryDBHelper(getActivity());
         Intent intent = getActivity().getIntent();
 
         if(intent.getStringExtra("access token") != null)
@@ -103,15 +107,6 @@ public class SearchableFragment extends Fragment {
         if(artist != null && track != null)
             doMySearch(track,artist,false);
     }
-
-//
-//    // not needed for fingerprint but needed for search bar.
-//    private void handleIntent(Intent intent) {
-//        if(Intent.ACTION_SEARCH.equals(intent.getAction())) {
-//            String query = intent.getStringExtra(SearchManager.QUERY);
-//            doMySearch(query,null,false);
-//        }
-//    }
 
     public String parse(String track, String artist, boolean removeFeatArtist) {
         // when removeFeatArtist is true, we are parsing again because Gracenote spelled a featuring artist wrong
@@ -288,6 +283,13 @@ public class SearchableFragment extends Fragment {
                     String albumUrl = "";
                     if(item.getAlbum().getImages() != null)
                         albumUrl = item.getAlbum().getImages().get(0).getUrl();
+
+
+                    // Adding to history database
+                    // Check if already exists in database?
+                    HistoryDBHelper db = new HistoryDBHelper(getActivity());
+                    db.insertData(item.getName(),artistString);
+
 
                     int imageWidth = getScreenWidth() - 100;
 
