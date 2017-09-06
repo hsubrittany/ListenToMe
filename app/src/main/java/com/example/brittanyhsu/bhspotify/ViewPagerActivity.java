@@ -30,4 +30,9 @@ public class ViewPagerActivity extends AppCompatActivity {
         pagerTabStrip.setTabIndicatorColor(getColor(R.color.background));
     }
 
+//    public void refreshFragment() {
+//        HistoryFragment frag = new HistoryFragment();
+//        frag.refresh();
+//    }
+
 }

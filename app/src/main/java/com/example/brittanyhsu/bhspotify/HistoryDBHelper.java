@@ -2,6 +2,7 @@ package com.example.brittanyhsu.bhspotify;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -50,5 +51,11 @@ public class HistoryDBHelper extends SQLiteOpenHelper {
 
         Log.d(TAG, "Inserted " + title + " " + artist);
         return true;
+    }
+
+    public Cursor getAllData() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+        return res;
     }
 }

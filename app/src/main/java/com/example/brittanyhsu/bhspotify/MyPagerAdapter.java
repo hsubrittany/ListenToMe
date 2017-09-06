@@ -23,7 +23,7 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return SearchableFragment.newInstance();
             case 1:
-                return Fragment2.newInstance("Fragment 2", "This works", R.drawable.cool_cat);
+                return HistoryFragment.newInstance();
             default:
                 return null;
         }

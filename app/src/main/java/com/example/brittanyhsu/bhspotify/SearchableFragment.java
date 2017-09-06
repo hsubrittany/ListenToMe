@@ -89,6 +89,7 @@ public class SearchableFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);
 
+        // is this necessary
         myDb = new HistoryDBHelper(getActivity());
         Intent intent = getActivity().getIntent();
 

@@ -55,7 +55,8 @@
         <activity android:name="com.example.brittanyhsu.bhspotify.ViewPagerActivity"
             android:label="@string/app_name"
             android:parentActivityName=".FingerprintActivity"
-            android:theme="@style/Theme.MyCompatTheme">
+            android:theme="@style/Theme.MyCompatTheme"
+            android:launchMode="singleInstance">
         </activity>
 
 
