@@ -61,7 +61,7 @@ public class SearchableFragment extends Fragment {
     private LayoutInflater mInflater;
     private ViewGroup mContainer;
     private ViewGroup placeholder;
-
+    private int searchAgain = 0;
     HistoryDBHelper myDb;
 
     public SearchableFragment() {
@@ -112,6 +112,8 @@ public class SearchableFragment extends Fragment {
     public String parse(String track, String artist, boolean removeFeatArtist) {
         // when removeFeatArtist is true, we are parsing again because Gracenote spelled a featuring artist wrong
         // so we take all featuring artists out
+        searchAgain++;
+
         int featIndex = -1;
         if(removeFeatArtist) {
             artist = artist.toLowerCase();
@@ -262,8 +264,10 @@ public class SearchableFragment extends Fragment {
 
                 else {
                     if(response.body().getTracksSearch().getItems().isEmpty()) {
-                        if(doMySearch(track,artist,true))
+                        if(searchAgain == 0) { // do not parse again if we already did!
+                            doMySearch(track,artist,true) ;
                             return;
+                        }
                         openSearchErrorDialog();
                         return;
                     }
