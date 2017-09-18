@@ -50,6 +50,7 @@ public class HistoryDBHelper extends SQLiteOpenHelper {
         if(result == -1) return false;
 
         Log.d(TAG, "Inserted " + title + " " + artist);
+//        new HistoryFragment().refreshAdapter();
         return true;
     }
 

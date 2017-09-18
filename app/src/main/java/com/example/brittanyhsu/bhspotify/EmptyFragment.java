@@ -15,36 +15,21 @@ import org.w3c.dom.Text;
  * Created by brittanyhsu on 8/24/17.
  */
 
-public class Fragment1 extends android.support.v4.app.Fragment {
-    private String title;
-    private int image;
+public class EmptyFragment extends android.support.v4.app.Fragment {
 
-    public static Fragment1 newInstance(String title, int resImage) {
-        Fragment1 frag = new Fragment1();
-        Bundle args = new Bundle();
-        args.putString("title",title);
-        args.putInt("image", resImage);
-        frag.setArguments(args);
-
+    public static EmptyFragment newInstance() {
+        EmptyFragment frag = new EmptyFragment();
         return frag;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        title = getArguments().getString("title");
-        image = getArguments().getInt("image",0);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_one, container, false);
-        TextView titleLabel = (TextView) v.findViewById(R.id.text_fragment1);
-        titleLabel.setText(title);
-
-        ImageView imageView = (ImageView) v.findViewById(R.id.image_fragment1);
-        imageView.setImageResource(image);
-
         return v;
 
     }

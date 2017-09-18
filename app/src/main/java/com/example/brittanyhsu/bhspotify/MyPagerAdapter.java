@@ -23,7 +23,7 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return SearchableFragment.newInstance();
             case 1:
-                return HistoryFragment.newInstance();
+                return EmptyFragment.newInstance();
             default:
                 return null;
         }

@@ -63,7 +63,9 @@ public class SearchableFragment extends Fragment {
     private ViewGroup placeholder;
     private int searchAgain = 0;
     HistoryDBHelper myDb;
+    FragmentCommunicator cm;
 
+    String TAG = "SearchableFragment";
     public SearchableFragment() {
         // DO I NEED THIS
     }
@@ -91,6 +93,7 @@ public class SearchableFragment extends Fragment {
 
         // is this necessary
         myDb = new HistoryDBHelper(getActivity());
+        cm = (FragmentCommunicator) getActivity();
         Intent intent = getActivity().getIntent();
 
         if(intent.getStringExtra("access token") != null)
@@ -103,7 +106,7 @@ public class SearchableFragment extends Fragment {
             artist = intent.getStringExtra("artist");
         }
 
-        Log.d("SearchableActivity", "AccessToken onCreate: " + accessToken);
+        Log.d(TAG, "AccessToken onCreate: " + accessToken);
 
         if(artist != null && track != null)
             doMySearch(track,artist,false);
@@ -117,7 +120,7 @@ public class SearchableFragment extends Fragment {
         int featIndex = -1;
         if(removeFeatArtist) {
             artist = artist.toLowerCase();
-            Log.d("SearchableActivity","old artist: " + artist);
+            Log.d(TAG,"old artist: " + artist);
 
             if(artist.contains("featuring")) {
                 featIndex = artist.indexOf("featuring");
@@ -127,11 +130,11 @@ public class SearchableFragment extends Fragment {
             }
 
             if(featIndex != -1) {
-                Log.d("SearchableActivity","feat index: " + featIndex);
+                Log.d(TAG,"feat index: " + featIndex);
 
                 // remove substring of featuring artists from string
                 artist = artist.replace(artist.substring(featIndex,artist.length()),"");
-                Log.d("SearchableActivity","new artist: " + artist);
+                Log.d(TAG,"new artist: " + artist);
             }
         }
 
@@ -141,7 +144,7 @@ public class SearchableFragment extends Fragment {
         String withoutFeat = (track + " " + artist).toLowerCase();
         withoutFeat = withoutFeat.replaceAll("[\\[\\]()]"," "); // Removing () AND []
         withoutFeat = withoutFeat.replaceAll(",",""); // Removing ,
-        Log.d("SearchableActivity","DID () [] GO AWAY??? "+withoutFeat);
+        Log.d(TAG,"DID () [] GO AWAY??? "+withoutFeat);
 
         String[] splitQuery = withoutFeat.split(" "); // Split query into array of words
 
@@ -217,7 +220,7 @@ public class SearchableFragment extends Fragment {
         String withoutFeat = parse(track,artist,removeFeatArtist);
 
 
-        Log.d("SearchableActivity","After parsing: " + withoutFeat);
+        Log.d(TAG,"After parsing: " + withoutFeat);
 
 
 //        setContentView(R.layout.activity_result);
@@ -227,7 +230,7 @@ public class SearchableFragment extends Fragment {
         placeholder.addView(newView);
 
         albumArt = (ImageView) getView().findViewById(R.id.albumArt);
-        Log.d("SearchableActivity", "AccessToken doMySearch: " + accessToken);
+        Log.d(TAG, "AccessToken doMySearch: " + accessToken);
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
             @Override
             public okhttp3.Response intercept(Chain chain) throws IOException {
@@ -250,13 +253,13 @@ public class SearchableFragment extends Fragment {
 
         final SpotifyAPI client = retrofit.create(SpotifyAPI.class);
 
-        Call<Data> search = client.searchTrack(withoutFeat);
+        final Call<Data> search = client.searchTrack(withoutFeat);
         search.enqueue(new Callback<Data>() {
             @Override
             public void onResponse(Call<Data> call, Response<Data> response) {
                 if(!response.isSuccessful()) {
                     try {
-                        Log.d("SearchableActivity", "Error: " + response.errorBody().string());
+                        Log.d(TAG, "Error: " + response.errorBody().string());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -264,10 +267,12 @@ public class SearchableFragment extends Fragment {
 
                 else {
                     if(response.body().getTracksSearch().getItems().isEmpty()) {
-                        if(searchAgain == 0) { // do not parse again if we already did!
+                        Log.d(TAG,"searchAgain =" + searchAgain);
+                        if(searchAgain < 2) { // do not parse again if we already did!
                             doMySearch(track,artist,true) ;
                             return;
                         }
+                        Log.d(TAG, "parsing didnt work");
                         openSearchErrorDialog();
                         return;
                     }
@@ -281,7 +286,7 @@ public class SearchableFragment extends Fragment {
                             artistString += ", ";
                     }
 
-                    Log.d("SearchableActivity", "Displaying search results...  \n" +
+                    Log.d(TAG, "Displaying search results...  \n" +
                             "Title: " + item.getName() + '\n' + "Artist(s): " + artistString +
                             '\n' + "Album: " + item.getAlbum().getName() + '\n' + "URI: " + item.getUri());
 
@@ -293,7 +298,13 @@ public class SearchableFragment extends Fragment {
                     // Adding to history database
                     // Check if already exists in database?
                     HistoryDBHelper db = new HistoryDBHelper(getActivity());
-                    db.insertData(item.getName(),artistString);
+                    if(db.insertData(item.getName(),artistString)) {
+                        // Inserted
+                        // Refresh history fragment
+                        Log.d(TAG, "insertData true, calling refreshFragment");
+                        cm.refreshFragment();
+                    }
+//                    db.insertData(item.getName(),artistString);
 
 
                     int imageWidth = getScreenWidth() - 100;
@@ -325,7 +336,7 @@ public class SearchableFragment extends Fragment {
 
             @Override
             public void onFailure(Call<Data> call, Throwable t) {
-                Log.d("SearchableActivity","Search failed");
+                Log.d(TAG,"Search failed");
             }
         });
         return true;
@@ -338,7 +349,7 @@ public class SearchableFragment extends Fragment {
             public void onResponse(Call<UserProfile> call, Response<UserProfile> response) {
                 if(!response.isSuccessful()) {
                     try {
-                        Log.d("SearchableActivity", "User Id Error " + response.errorBody().string());
+                        Log.d(TAG, "User Id Error " + response.errorBody().string());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -367,11 +378,11 @@ public class SearchableFragment extends Fragment {
         call.enqueue(new Callback<Playlist>() {
             @Override
             public void onResponse(Call<Playlist> call, Response<Playlist> response) {
-                Log.d("SearchableActivity", "onResponse");
+                Log.d(TAG, "onResponse");
 
                 if(!response.isSuccessful()) {
                     try {
-                        Log.d("SearchableActivity", "Error " + response.errorBody().string());
+                        Log.d(TAG, "Error " + response.errorBody().string());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -396,7 +407,7 @@ public class SearchableFragment extends Fragment {
                     String[] play = myOwnPlaylists.toArray(new String[0]);
                     String[] playID = playlist_ids.toArray(new String[0]);
 
-                    Log.d("SearchableActivity", "my playlists... " + myOwnPlaylists);
+                    Log.d(TAG, "my playlists... " + myOwnPlaylists);
 
                     openListDialog(play,client,owner_id,playID, uri, trackTitle);
                 }
@@ -404,7 +415,7 @@ public class SearchableFragment extends Fragment {
 
             @Override
             public void onFailure(Call<Playlist> call, Throwable t) {
-                Log.d("SearchableActivity", "Failed to get playlists :-(");
+                Log.d(TAG, "Failed to get playlists :-(");
             }
         });
     }
