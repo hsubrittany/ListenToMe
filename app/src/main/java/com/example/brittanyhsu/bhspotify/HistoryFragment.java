@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -58,6 +59,14 @@ public class HistoryFragment extends Fragment {
         myDb = new HistoryDBHelper(getActivity());
 
         mListView = (ListView) getView().findViewById(R.id.history_list_view);
+        Button button = (Button) getView().findViewById(R.id.clearButton);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                myDb.deleteAll();
+                historyList.clear();
+                adapter.notifyDataSetChanged();
+            }
+        });
 
         // put db data in arraylist
 

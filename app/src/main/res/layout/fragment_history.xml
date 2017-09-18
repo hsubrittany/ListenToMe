@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
-    <FrameLayout
+
+    <ListView
+        android:id="@+id/history_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/frame_layout">
-        <ListView
-            android:id="@+id/history_list_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></ListView>
+        android:paddingTop="20dp"
+        android:paddingBottom="60dp"></ListView>
 
-    </FrameLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CLEAR HISTORY"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/clearButton"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"/>
 
 </RelativeLayout>
