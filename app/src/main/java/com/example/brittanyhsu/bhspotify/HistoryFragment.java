@@ -1,5 +1,6 @@
 package com.example.brittanyhsu.bhspotify;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,9 +8,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
+
+import com.spotify.sdk.android.player.Config;
+import com.spotify.sdk.android.player.Player;
+import com.spotify.sdk.android.player.Spotify;
+import com.spotify.sdk.android.player.SpotifyPlayer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +27,6 @@ import java.util.List;
  */
 
 
-//        mPlayer.playUri(null, "spotify:track:4TJNW3JPNoxtsqmZjLKGk0", 0, 0);
 
 
 public class HistoryFragment extends Fragment {
@@ -27,9 +34,11 @@ public class HistoryFragment extends Fragment {
     private LayoutInflater mInflater;
     private ViewGroup mContainer;
     private ViewGroup placeholder;
+    String accessToken = "";
 
     private ListView mListView;
     HistoryDBHelper myDb;
+    public static Player mPlayer;
 //    List<String> historyList = new ArrayList<>();
 
     List<TrackInfo> historyTrackInfo = new ArrayList<>();
@@ -66,8 +75,10 @@ public class HistoryFragment extends Fragment {
         myDb = new HistoryDBHelper(getActivity());
 
         mListView = (ListView) getView().findViewById(R.id.history_list_view);
-        Button button = (Button) getView().findViewById(R.id.clearButton);
-        button.setOnClickListener(new View.OnClickListener() {
+
+        // clear button
+        Button clearButton = (Button) getView().findViewById(R.id.clearButton);
+        clearButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 myDb.deleteAll();
                 historyTrackInfo.clear();
@@ -95,12 +106,10 @@ public class HistoryFragment extends Fragment {
             trackInfo.title = res.getString(1);
             trackInfo.artist = res.getString(2);
             trackInfo.imageUrl = res.getString(3);
+            trackInfo.uri = res.getString(4);
             historyTrackInfo.add(trackInfo);
             Log.d(TAG,"inserted : " + historyTrackInfo.get(historyTrackInfo.size()-1).title);
         }
         res.close();
     }
-
-
-
 }

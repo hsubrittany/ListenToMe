@@ -32,10 +32,22 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:id="@+id/play_button"
-        android:background="@drawable/play_btn"
+        android:src="@drawable/play_btn"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:background="@color/black"
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
+        android:clickable="true"
         android:layout_centerVertical="true"/>
+
+    <!--<Button-->
+        <!--android:layout_width="30dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:id="@+id/play_button"-->
+        <!--android:layout_marginRight="10dp"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_centerVertical="true"/>-->
 
 
 </RelativeLayout>

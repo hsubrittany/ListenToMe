@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity implements
     private final String REDIRECT_URI = Constants.REDIRECT_URI;
     private String accessToken;
     private static final int REQUEST_CODE = 12;
-    private Player mPlayer;
+    public static Player mPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

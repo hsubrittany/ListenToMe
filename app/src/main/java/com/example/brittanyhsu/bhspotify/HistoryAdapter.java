@@ -1,13 +1,20 @@
 package com.example.brittanyhsu.bhspotify;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.spotify.sdk.android.player.Config;
+import com.spotify.sdk.android.player.Player;
+import com.spotify.sdk.android.player.Spotify;
+import com.spotify.sdk.android.player.SpotifyPlayer;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -21,6 +28,7 @@ public class HistoryAdapter extends BaseAdapter {
     private List<TrackInfo> mDataSource;
     private Context mContext;
     private LayoutInflater mInflater;
+//    private Player mPlayer;
 
     public HistoryAdapter(Context context, List<TrackInfo> items) {
         mContext = context;
@@ -50,12 +58,22 @@ public class HistoryAdapter extends BaseAdapter {
         TextView titleTextView = (TextView) rowView.findViewById(R.id.item_track);
         TextView artistTextView = (TextView) rowView.findViewById(R.id.item_artist);
         ImageView albumImageView = (ImageView) rowView.findViewById(R.id.item_album);
+        ImageButton playButton = (ImageButton) rowView.findViewById(R.id.play_button);
 
-        TrackInfo trackInfo = (TrackInfo) getItem(position);
+        final TrackInfo trackInfo = (TrackInfo) getItem(position);
 
         titleTextView.setText(trackInfo.title);
         artistTextView.setText(trackInfo.artist);
         Picasso.with(mContext).load(trackInfo.imageUrl).error(R.mipmap.ic_launcher).into(albumImageView);
+
+        // play preview button
+        playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("HistoryAdapter", "Play button clicked");
+                LoginActivity.mPlayer.playUri(null, trackInfo.uri, 0, 0);;
+            }
+        });
 
         return rowView;
     }
