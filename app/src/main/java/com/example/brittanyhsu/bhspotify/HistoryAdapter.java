@@ -65,4 +65,5 @@ class TrackInfo {
     String title;
     String artist;
     String imageUrl;
+    String uri;
 }
