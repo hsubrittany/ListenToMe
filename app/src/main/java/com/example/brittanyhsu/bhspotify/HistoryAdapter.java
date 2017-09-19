@@ -49,13 +49,13 @@ public class HistoryAdapter extends BaseAdapter {
         View rowView = mInflater.inflate(R.layout.list_row,parent,false);
         TextView titleTextView = (TextView) rowView.findViewById(R.id.item_track);
         TextView artistTextView = (TextView) rowView.findViewById(R.id.item_artist);
-        //ImageView albumImageView = (ImageView) rowView.findViewById(R.id.item_album);
+        ImageView albumImageView = (ImageView) rowView.findViewById(R.id.item_album);
 
         TrackInfo trackInfo = (TrackInfo) getItem(position);
 
         titleTextView.setText(trackInfo.title);
         artistTextView.setText(trackInfo.artist);
-        //Picasso.with(mContext).load(trackInfo.imageUrl).placeholder(R.mipmap.ic_launcher).into(albumImageView);
+        Picasso.with(mContext).load(trackInfo.imageUrl).error(R.mipmap.ic_launcher).into(albumImageView);
 
         return rowView;
     }

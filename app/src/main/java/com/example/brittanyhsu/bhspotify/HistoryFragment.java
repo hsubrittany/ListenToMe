@@ -90,6 +90,7 @@ public class HistoryFragment extends Fragment {
             TrackInfo trackInfo = new TrackInfo();
             trackInfo.title = res.getString(1);
             trackInfo.artist = res.getString(2);
+            trackInfo.imageUrl = res.getString(3);
             historyTrackInfo.add(trackInfo);
             Log.d(TAG,"inserted : " + historyTrackInfo.get(historyTrackInfo.size()-1).title);
         }
