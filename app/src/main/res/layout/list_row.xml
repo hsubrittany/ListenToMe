@@ -18,6 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
+            android:layout_marginRight="45dp"
             android:id="@+id/item_track" />
         <TextView
             android:layout_width="wrap_content"
@@ -40,14 +41,6 @@
         android:layout_marginRight="10dp"
         android:clickable="true"
         android:layout_centerVertical="true"/>
-
-    <!--<Button-->
-        <!--android:layout_width="30dp"-->
-        <!--android:layout_height="30dp"-->
-        <!--android:id="@+id/play_button"-->
-        <!--android:layout_marginRight="10dp"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:layout_centerVertical="true"/>-->
 
 
 </RelativeLayout>
