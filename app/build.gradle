@@ -46,5 +46,6 @@ dependencies {
     compile "com.squareup.picasso:picasso:2.4.0"
 
     compile 'com.airbnb.android:lottie:2.1.0'
-//    compile 'com.airbnb.android:lottie:1.5.3'
+
+//    compile 'com.android.support:recyclerview-v7:24.0.+'
 }

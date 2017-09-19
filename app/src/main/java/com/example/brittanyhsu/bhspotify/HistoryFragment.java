@@ -26,8 +26,11 @@ public class HistoryFragment extends Fragment {
 
     private ListView mListView;
     HistoryDBHelper myDb;
-    List<String> historyList = new ArrayList<>();
-    private ArrayAdapter adapter = null;
+//    List<String> historyList = new ArrayList<>();
+
+    List<TrackInfo> historyTrackInfo = new ArrayList<>();
+//    private ArrayAdapter adapter = null;
+    private HistoryAdapter adapter = null;
 
     public HistoryFragment() {
 
@@ -63,32 +66,32 @@ public class HistoryFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 myDb.deleteAll();
-                historyList.clear();
+                historyTrackInfo.clear();
                 adapter.notifyDataSetChanged();
             }
         });
 
         // put db data in arraylist
-
         addDataToList();
-        adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1,historyList);
+//        adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1,historyList);
+        adapter = new HistoryAdapter(getContext(),historyTrackInfo);
+
         mListView.setAdapter(adapter);
     }
 
     public void addDataToList() {
         Cursor res = myDb.getAllData();
         if(res.getCount() == 0) {
-            // show message
             return;
         }
 
 
         while(res.moveToNext()) {
-            StringBuffer buffer = new StringBuffer();
-            buffer.append("Title: " + res.getString(1) + "\n");
-            buffer.append("Artist: " + res.getString(2) + "\n");
-            Log.d(TAG,buffer.toString());
-            historyList.add(buffer.toString());
+            TrackInfo trackInfo = new TrackInfo();
+            trackInfo.title = res.getString(1);
+            trackInfo.artist = res.getString(2);
+            historyTrackInfo.add(trackInfo);
+            Log.d(TAG,"inserted : " + historyTrackInfo.get(historyTrackInfo.size()-1).title);
         }
         res.close();
     }
