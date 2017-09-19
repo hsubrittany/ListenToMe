@@ -23,6 +23,8 @@ public class HistoryDBHelper extends SQLiteOpenHelper {
     public static final String COL_2 = "TITLE";
     public static final String COL_3 = "ARTIST";
     public static final String COL_4 = "ALBUM";
+    public static final String COL_5 = "URI";
+
 
 
 
@@ -32,7 +34,7 @@ public class HistoryDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME + "  (ID INTEGER PRIMARY KEY AUTOINCREMENT,TITLE TEXT,ARTIST TEXT,ALBUM TEXT) ");
+        db.execSQL("create table " + TABLE_NAME + "  (ID INTEGER PRIMARY KEY AUTOINCREMENT,TITLE TEXT,ARTIST TEXT,ALBUM TEXT,URI TEXT) ");
     }
 
     @Override
@@ -41,17 +43,18 @@ public class HistoryDBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertData(String title, String artist, String albumArtUrl) {
+    public boolean insertData(String title, String artist, String albumArtUrl, String uri) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_2,title);
         contentValues.put(COL_3,artist);
         contentValues.put(COL_4,albumArtUrl);
+        contentValues.put(COL_5,uri);
+
         long result = db.insert(TABLE_NAME,null,contentValues);
         if(result == -1) return false;
 
-        Log.d(TAG, "Inserted to DB: " + title + " " + artist + ", URL: " + albumArtUrl);
-//        new HistoryFragment().refreshAdapter();
+        Log.d(TAG, "Inserted to DB: " + title + " " + artist + "\n URL: " + albumArtUrl + "\n URI: " + uri);
         return true;
     }
 

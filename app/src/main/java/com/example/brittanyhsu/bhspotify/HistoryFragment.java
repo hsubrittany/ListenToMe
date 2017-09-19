@@ -18,6 +18,10 @@ import java.util.List;
  * Created by brittanyhsu on 9/4/17.
  */
 
+
+//        mPlayer.playUri(null, "spotify:track:4TJNW3JPNoxtsqmZjLKGk0", 0, 0);
+
+
 public class HistoryFragment extends Fragment {
     String TAG = "HistoryFragment";
     private LayoutInflater mInflater;

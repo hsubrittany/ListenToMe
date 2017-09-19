@@ -298,7 +298,7 @@ public class SearchableFragment extends Fragment {
                     // Adding to history database
                     // Check if already exists in database?
                     HistoryDBHelper db = new HistoryDBHelper(getActivity());
-                    if(db.insertData(item.getName(),artistString,albumUrl)) {
+                    if(db.insertData(item.getName(),artistString,albumUrl,item.getUri())) {
                         // Inserted
                         // Refresh history fragment
                         Log.d(TAG, "insertData true, calling refreshFragment");
