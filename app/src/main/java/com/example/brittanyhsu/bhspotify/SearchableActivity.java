@@ -382,12 +382,12 @@
 //                        playlist_ids.add(response.body().getItems().get(i).getId());
 //                    }
 //
-//                    String[] play = (String[]) myOwnPlaylists.toArray();
+//                    String[] preview_song = (String[]) myOwnPlaylists.toArray();
 //                    String[] playID = (String[]) playlist_ids.toArray();
 //
 //                    Log.d("SearchableActivity", "my playlists... " + myOwnPlaylists);
 //
-//                    openListDialog(play,client,owner_id,playID, uri, trackTitle);
+//                    openListDialog(preview_song,client,owner_id,playID, uri, trackTitle);
 //                }
 //            }
 //
@@ -398,22 +398,22 @@
 //        });
 //    }
 //
-//    private void openListDialog(final String[] play, final SpotifyAPI client, final String owner_id,
+//    private void openListDialog(final String[] preview_song, final SpotifyAPI client, final String owner_id,
 //                                final String[] playID, final String uri, final String trackName) {
 //        final AlertDialog.Builder myDialog = new AlertDialog.Builder(this);
 //        final List<String> playlistsChosen = new ArrayList<>();
 //        final List<String> playlistIDs = new ArrayList<>();
 //
 //        myDialog.setTitle("Add to playlist")
-//                .setMultiChoiceItems(play,null, new DialogInterface.OnMultiChoiceClickListener() {
+//                .setMultiChoiceItems(preview_song,null, new DialogInterface.OnMultiChoiceClickListener() {
 //                    @Override
 //                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
 //                        if(isChecked) {
-//                            playlistsChosen.add(play[which]);
+//                            playlistsChosen.add(preview_song[which]);
 //                            playlistIDs.add(playID[which]);
 //                        }
-//                        else if(playlistsChosen.contains(play[which])) {
-//                            playlistsChosen.remove(play[which]);
+//                        else if(playlistsChosen.contains(preview_song[which])) {
+//                            playlistsChosen.remove(preview_song[which]);
 //                            playlistIDs.remove(playID[which]);
 //                        }
 //                    }

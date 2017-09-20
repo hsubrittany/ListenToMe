@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.spotify.sdk.android.player.Config;
+import com.spotify.sdk.android.player.Error;
 import com.spotify.sdk.android.player.Player;
 import com.spotify.sdk.android.player.Spotify;
 import com.spotify.sdk.android.player.SpotifyPlayer;
@@ -58,7 +59,7 @@ public class HistoryAdapter extends BaseAdapter {
         TextView titleTextView = (TextView) rowView.findViewById(R.id.item_track);
         TextView artistTextView = (TextView) rowView.findViewById(R.id.item_artist);
         ImageView albumImageView = (ImageView) rowView.findViewById(R.id.item_album);
-        ImageButton playButton = (ImageButton) rowView.findViewById(R.id.play_button);
+        final ImageButton playButton = (ImageButton) rowView.findViewById(R.id.play_button);
 
         final TrackInfo trackInfo = (TrackInfo) getItem(position);
 
@@ -66,12 +67,34 @@ public class HistoryAdapter extends BaseAdapter {
         artistTextView.setText(trackInfo.artist);
         Picasso.with(mContext).load(trackInfo.imageUrl).error(R.mipmap.ic_launcher).into(albumImageView);
 
-        // play preview button
+        // preview_song preview button
+        final Player spotifyPlayer = LoginActivity.mPlayer;
+        final Player.OperationCallback oc = new Player.OperationCallback() {
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onError(Error error) {
+
+            }
+        };
+        final boolean[] isPlaying = {false};
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("HistoryAdapter", "Play button clicked");
-                LoginActivity.mPlayer.playUri(null, trackInfo.uri, 0, 0);;
+                if(isPlaying[0]) {
+                    playButton.setImageResource(R.drawable.play_btn);
+                    spotifyPlayer.pause(oc);
+                }
+                else {
+                    spotifyPlayer.playUri(null, trackInfo.uri, 0, 0);
+                    playButton.setImageResource(R.drawable.stop_btn);
+                }
+
+                isPlaying[0] = !isPlaying[0];
             }
         });
 
