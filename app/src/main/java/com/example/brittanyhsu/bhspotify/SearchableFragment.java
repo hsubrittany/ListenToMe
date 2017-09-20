@@ -295,9 +295,13 @@ public class SearchableFragment extends Fragment {
                         albumUrl = item.getAlbum().getImages().get(0).getUrl();
 
 
-                    // Adding to history database
-                    // Check if already exists in database?
                     HistoryDBHelper db = new HistoryDBHelper(getActivity());
+
+                    // if exists in db already, delete old rows
+                    if(db.existsInTable(item.getName(),artistString))
+                        db.deleteRow(item.getName());
+
+                    // insert track to db
                     if(db.insertData(item.getName(),artistString,albumUrl,item.getUri())) {
                         // Inserted
                         // Refresh history fragment

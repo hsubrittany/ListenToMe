@@ -68,4 +68,27 @@ public class HistoryDBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_NAME, null, null);
     }
+
+    public boolean existsInTable(String title, String artist) {
+        Cursor res = getAllData();
+        if(res.getCount() == 0) {
+            return false;
+        }
+
+        while(res.moveToNext()) {
+            if(res.getString(1).equals(title) && res.getString(2).equals(artist)) {
+                Log.d(TAG,"FOUND IN DB : " + title + "  "+ artist);
+                return true;
+            }
+        }
+        res.close();
+        return false;
+    }
+
+
+    public void deleteRow(String title) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_NAME + " WHERE " + COL_2+ "='"+title+"'");
+
+    }
 }
