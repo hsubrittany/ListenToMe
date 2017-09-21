@@ -91,14 +91,11 @@ public class SearchableFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);
 
-        // is this necessary
         myDb = new HistoryDBHelper(getActivity());
         cm = (FragmentCommunicator) getActivity();
         Intent intent = getActivity().getIntent();
 
-        if(intent.getStringExtra("access token") != null)
-            accessToken = intent.getStringExtra("access token");
-
+        accessToken = LoginActivity.accessToken;
         if(intent.getStringExtra("track") != null)
             track = intent.getStringExtra("track");
 
@@ -230,7 +227,6 @@ public class SearchableFragment extends Fragment {
         placeholder.addView(newView);
 
         albumArt = (ImageView) getView().findViewById(R.id.albumArt);
-        Log.d(TAG, "AccessToken doMySearch: " + accessToken);
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
             @Override
             public okhttp3.Response intercept(Chain chain) throws IOException {

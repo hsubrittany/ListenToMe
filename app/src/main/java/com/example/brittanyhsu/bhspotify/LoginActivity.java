@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity implements
 {
     private final String CLIENT_ID = Constants.CLIENT_ID;
     private final String REDIRECT_URI = Constants.REDIRECT_URI;
-    private String accessToken;
+    public static String accessToken;
     private static final int REQUEST_CODE = 12;
     public static Player mPlayer;
 
@@ -117,7 +117,7 @@ public class LoginActivity extends AppCompatActivity implements
 //        Intent intent = new Intent(LoginActivity.this, SearchableActivity.class);
 //        Intent intent = new Intent(LoginActivity.this, AddToPlaylist.class);
         Intent intent = new Intent(LoginActivity.this, FingerprintActivity.class);
-        intent.putExtra("access token", accessToken);
+//        intent.putExtra("access token", accessToken);
 //        Intent intent = new Intent(LoginActivity.this, ViewPagerActivity.class);
 
         startActivity(intent);

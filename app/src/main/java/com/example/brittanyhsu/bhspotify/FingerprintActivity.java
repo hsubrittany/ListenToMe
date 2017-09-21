@@ -104,10 +104,7 @@ public class FingerprintActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Intent intent = getIntent();
-
-        if(intent.getStringExtra("access token") != null)
-            accessToken = intent.getStringExtra("access token");
+//        accessToken = LoginActivity.accessToken;
 
         createUI();
 
@@ -951,8 +948,7 @@ public class FingerprintActivity extends AppCompatActivity {
             Log.d(appString, "track: " + track);
             Intent searchIntent = new Intent(FingerprintActivity.this, ViewPagerActivity.class);
             searchIntent.putExtra("track", track)
-                    .putExtra("artist", artist)
-                    .putExtra("access token", accessToken);
+                    .putExtra("artist", artist);
 
             startActivity(searchIntent);
         }

@@ -34,15 +34,11 @@ public class HistoryFragment extends Fragment {
     private LayoutInflater mInflater;
     private ViewGroup mContainer;
     private ViewGroup placeholder;
-    String accessToken = "";
 
     private ListView mListView;
     HistoryDBHelper myDb;
-    public static Player mPlayer;
-//    List<String> historyList = new ArrayList<>();
 
     List<TrackInfo> historyTrackInfo = new ArrayList<>();
-//    private ArrayAdapter adapter = null;
     private HistoryAdapter adapter = null;
 
     public HistoryFragment() {
