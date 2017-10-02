@@ -64,6 +64,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 
 public class FingerprintActivity extends AppCompatActivity {
 
@@ -97,7 +99,11 @@ public class FingerprintActivity extends AppCompatActivity {
     protected volatile long				lastLookup_startTime;  				// start time of query
     private volatile boolean			audioProcessingStarted   = false;
 
-    public String accessToken = "";
+    // For custom font, using Calligraphy library
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     /** Called when the activity is first created. */
     @Override

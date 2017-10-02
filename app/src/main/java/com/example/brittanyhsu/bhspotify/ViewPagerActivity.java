@@ -1,5 +1,6 @@
 package com.example.brittanyhsu.bhspotify;
 
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -10,6 +11,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 /**
  * Created by brittanyhsu on 8/24/17.
  */
@@ -18,6 +21,12 @@ public class ViewPagerActivity extends AppCompatActivity implements FragmentComm
     FragmentPagerAdapter adapterViewPager;
 
     String TAG = "ViewPagerActivity";
+
+    // For custom font, using Calligraphy library
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
