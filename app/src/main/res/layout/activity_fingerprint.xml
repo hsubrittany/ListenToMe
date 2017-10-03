@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:gravity="center_vertical"
-        android:text="TAP BUTTON TO FIND SONG..."
+        android:text="@string/tap_button"
         android:textSize="18sp" />
 
     <TextView
@@ -32,7 +32,7 @@
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
         android:layout_marginTop="7dp"
-        android:text="No recording"
+        android:text="no recording"
         android:textSize="16sp"
         android:layout_height="wrap_content" />
 
@@ -53,8 +53,9 @@
         android:layout_alignBottom="@id/loadingAnimation"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:text="LISTENING..."
+        android:text="listening..."
         android:textStyle="bold"
+        android:textColor="#ffffff"
         android:textSize="14sp"
         />
 

@@ -47,10 +47,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/artistName"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="@color/background"
         android:gravity="center_horizontal"
         android:text="@string/button_name"
+        android:textColor="#ffffff"
+        android:textAllCaps="false"
         android:textSize="18sp"/>
 
 </RelativeLayout>

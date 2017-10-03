@@ -13,7 +13,7 @@
         <item name="android:actionBarStyle">@style/ActionBar</item>
         <item name="actionBarStyle">@style/ActionBar</item>
         <item name="alertDialogTheme">@style/MyAlertDialog</item>
-        <item name="android:textColor">#ffffff</item>
+        <item name="android:textColor">@color/grey_text</item>
     </style>
 
     <style name="ActionBar"
@@ -30,8 +30,9 @@
         <item name="android:textSize">16sp</item>
     </style>
 
-    <color name="winBackground">#000000</color>
-    <color name="background">#0e5351</color>
-    <color name="animation">#1b7c79</color>
+    <color name="winBackground">#ffffff</color>
+    <color name="background">#a7c6df</color>
+    <color name="animation">#a7c6df</color>
+    <color name="grey_text">#535353</color>
 
 </resources>

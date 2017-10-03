@@ -11,7 +11,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CLEAR HISTORY"
+        android:text="clear history"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
         android:layout_centerHorizontal="true"
         android:id="@+id/clearButton"
         android:layout_alignParentBottom="true"

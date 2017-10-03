@@ -667,10 +667,10 @@ public class FingerprintActivity extends AppCompatActivity {
 
         public MusicIDStreamEvents(){
             gnStatus_to_displayStatus = new HashMap<String,String>();
-            gnStatus_to_displayStatus.put(GnMusicIdStreamIdentifyingStatus.kStatusIdentifyingStarted.toString(), "Identification started");
-            gnStatus_to_displayStatus.put(GnMusicIdStreamIdentifyingStatus.kStatusIdentifyingFpGenerated.toString(), "Fingerprinting complete");
-            gnStatus_to_displayStatus.put(GnMusicIdStreamIdentifyingStatus.kStatusIdentifyingLocalQueryStarted.toString(), "Lookup started");
-            gnStatus_to_displayStatus.put(GnMusicIdStreamIdentifyingStatus.kStatusIdentifyingOnlineQueryStarted.toString(), "Lookup started");
+            gnStatus_to_displayStatus.put(GnMusicIdStreamIdentifyingStatus.kStatusIdentifyingStarted.toString(), "identification started");
+            gnStatus_to_displayStatus.put(GnMusicIdStreamIdentifyingStatus.kStatusIdentifyingFpGenerated.toString(), "fingerprinting complete");
+            gnStatus_to_displayStatus.put(GnMusicIdStreamIdentifyingStatus.kStatusIdentifyingLocalQueryStarted.toString(), "lookup started");
+            gnStatus_to_displayStatus.put(GnMusicIdStreamIdentifyingStatus.kStatusIdentifyingOnlineQueryStarted.toString(), "lookup started");
 //			gnStatus_to_displayStatus.put(GnMusicIdStreamIdentifyingStatus.kStatusIdentifyingEnded.toString(), "Identification complete");
         }
 
@@ -915,11 +915,11 @@ public class FingerprintActivity extends AppCompatActivity {
             try {
                 if (albumsResult.resultCount() == 0) {
 
-                    setStatus("No match", true);
+                    setStatus("no match", true);
 
                 } else {
 
-                    setStatus("Match found", true);
+                    setStatus("match found", true);
                     GnAlbumIterator iter = albumsResult.albums().getIterator();
 
                     while (iter.hasNext()) {
@@ -966,7 +966,7 @@ public class FingerprintActivity extends AppCompatActivity {
      * Helper to clear the results from the application display
      */
     private void clearResults() {
-        statusText.setText("No recording");
+        statusText.setText("no recording");
 //        metadataListing.removeAllViews();
     }
 

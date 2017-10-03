@@ -38,9 +38,9 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch(position) {
             case 0:
-                return "RESULT";
+                return "result";
             case 1:
-                return "HISTORY";
+                return "history";
             default:
                 return null;
         }

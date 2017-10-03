@@ -1,4 +1,5 @@
 <resources>
-    <string name="app_name">ListenToMe</string>
-    <string name="button_name">Add track to playlist</string>
+    <string name="app_name">listentome</string>
+    <string name="button_name">add track to playlist</string>
+    <string name="tap_button">tap button to find song</string>
 </resources>
