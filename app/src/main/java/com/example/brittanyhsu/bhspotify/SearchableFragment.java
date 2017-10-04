@@ -294,8 +294,10 @@ public class SearchableFragment extends Fragment {
                     HistoryDBHelper db = new HistoryDBHelper(getActivity());
 
                     // if exists in db already, delete old rows
-                    if(db.existsInTable(item.getName(),artistString))
+                    if(db.existsInTable(item.getName(),artistString)) {
+                        Log.d(TAG,"Deleting " + item.getName());
                         db.deleteRow(item.getName());
+                    }
 
                     // insert track to db
                     if(db.insertData(item.getName(),artistString,albumUrl,item.getUri())) {

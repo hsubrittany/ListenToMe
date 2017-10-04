@@ -88,7 +88,16 @@ public class HistoryDBHelper extends SQLiteOpenHelper {
 
     public void deleteRow(String title) {
         SQLiteDatabase db = this.getWritableDatabase();
+        title = addSingleQuote(title);
         db.execSQL("DELETE FROM " + TABLE_NAME + " WHERE " + COL_2+ "='"+title+"'");
-
     }
+
+    public String addSingleQuote(String title) {
+        // because sqlite is stupid
+        if(title.contains("'")) {
+            title = title.replaceAll("'","''");
+        }
+        return title;
+    }
+
 }
