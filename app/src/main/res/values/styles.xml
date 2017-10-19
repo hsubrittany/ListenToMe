@@ -23,7 +23,7 @@
     </style>
     
     <style name="MyAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="android:textColor">@color/winBackground</item>
+        <item name="android:textColor">@color/grey_text</item>
     </style>
 
     <style name="MyPagerTabTextStyle">
